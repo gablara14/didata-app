@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Text, View, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
-import { thriverBucket } from '../../../data/config.json'
-import { SelectedCommunityOptions } from '../components/SelectedOptions'
+import { thriverBucket } from '../../data/config.json'
+import { SelectedCommunityOptions } from '../../components/profile/SelectedOptions'
 
 
 const deviceWidth = Dimensions.get('window').width

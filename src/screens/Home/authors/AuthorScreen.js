@@ -30,7 +30,7 @@ import {
 
 
 
-import {SelectedOptions} from '../components/SelectedOptions'
+import {SelectedOptions} from '../../../components/profile/SelectedOptions'
 
 import { thriverBucket } from '../../../data/config.json'
 

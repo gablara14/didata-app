@@ -26,7 +26,7 @@ import {
     Bookmark,
 } from './styles';
 
-
+import { SelectedOptions } from '../../components/profile/SelectedOptions'
 
 const Profile = ({ navigation }) => {
     return(
@@ -79,9 +79,11 @@ const Profile = ({ navigation }) => {
               </ProfileEdit>
               {/* <Bookmark name="bookmark" size={24} color="black" /> */}
             </ProfileColumn>
-  
+            
             <StatsText>Clique para adicionar uma bio</StatsText>
+            
           </Content>
+          <SelectedOptions publications myProfile />
         </ScrollView>
       </Container>
     )

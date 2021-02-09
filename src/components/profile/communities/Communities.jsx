@@ -43,8 +43,6 @@ export default function Communities() {
 
                     </View>
                 </FlexButton>
-                
-
             </View>    
             
             <View  style={{display:'flex', flexDirection:'row',  borderBottomWidth: 1,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0, 0, 0, 0.1)'}}>

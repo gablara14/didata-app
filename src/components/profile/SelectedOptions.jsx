@@ -5,11 +5,12 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import {
     Options,
     SelectedText
-} from '../authors/styles';
+} from '../../screens/Home/authors/styles';
 
 import Publications from './Publications'
-import Communities from './Communities'
-import CommunityDetail from '../communities/CommunityDetail'
+import Communities from './communities/Communities'
+import CommunityDetail from './communities/CommunityDetail'
+import {CreateNewCommunity} from '../Buttons'
 
 export class  SelectedOptions extends Component {
 
@@ -52,7 +53,13 @@ export class  SelectedOptions extends Component {
                   </SelectedText>
                 </View>
                 </Options>
-              <Communities />
+                <Communities />
+                {
+                  this.props.myProfile
+                  ? <CreateNewCommunity />
+                  : <View />
+                } 
+              
             </>
             )
           }

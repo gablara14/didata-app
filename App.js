@@ -21,7 +21,9 @@ import {
   CategoryScreen,
   AuthorListScreen,
   SettingsScreen,
-  CommunityScreen
+  CommunityScreen,
+  CreateCommunityScreen,
+  CommunityPostsScreen
 } from './src/settings/NavigationOptions'
 
 // import AuthorScreen from './src/screens/Home/authors/AuthorScreen'
@@ -53,7 +55,8 @@ const homeFlow = createStackNavigator(
     Home: HomeScreen,
     Author: AuthorScreen,
     AuthorList: AuthorListScreen,
-    Community: CommunityScreen
+    Community: CommunityScreen,
+    CommunityPosts: CommunityPostsScreen
   },
   {
     navigationOptions: {
@@ -95,21 +98,27 @@ const activityFlow = createStackNavigator(
 )
 
 
+
+
+
+
 const profileFlow = createStackNavigator(
   {
     Profile: ProfileScreen,
-    Settings: SettingsScreen
+    Settings: SettingsScreen,
+    CreateCommunity: CreateCommunityScreen,
+    Community: CommunityScreen
   },
   {
+   
     navigationOptions: {
       tabBarLabel: <Text style={{ fontSize: 9 }} >Me</Text>,
       tabBarIcon: ({ tintColor }) => <Ionicons style={[{color: tintColor}]} name="person-outline" size={24} />,
-      
+       
     }
+    
   }
 )
-
-
 
 
 
@@ -119,7 +128,7 @@ const switchNavigator = createSwitchNavigator({
     {
       Home:  homeFlow,
       Explore: exploreFlow,
-      Create: CreateScreen,
+      // Create: CreateScreen,
       Activity: activityFlow,
       Profile: profileFlow
     },

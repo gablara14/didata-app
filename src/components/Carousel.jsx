@@ -179,7 +179,7 @@ export class NewReleasesCarousel extends Component{
                 keyExtractor={data => data.name}
                 renderItem={({ item }) => {
                     return (
-                        <TouchableOpacity style={styles.newReleasesButton}>
+                        <TouchableOpacity onPress={() => navigate('CommunityPosts')} style={styles.newReleasesButton}>
                             <View style={styles.newReleasesCard} >
                                 {/* <Image style={styles.backgroundImage} source={{ uri:  thriverBucket + item.image_url }} /> */}
                                     

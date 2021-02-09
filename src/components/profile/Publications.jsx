@@ -1,7 +1,7 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, TouchableOpacity, Touchable } from 'react-native'
 import styled from 'styled-components/native';
-
+import { navigate } from '../../navigationRef'
 
 export const FlexView = styled.View`
   width: 100%;
@@ -13,7 +13,10 @@ export default function Publications() {
     return (
         <View>
         <FlexView>
-          <View style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
+          
+          <TouchableOpacity onPress={() => navigate('CommunityPosts')}  style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
+          
+         
           <View style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
           <View style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
         </FlexView>
