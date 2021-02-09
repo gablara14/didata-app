@@ -27,6 +27,7 @@ const TagButtonText = styled.Text`
 const TagInput = ({ data }) => {
     return(
         <FlexView>
+
             <View>
                 <TagButton>
                     <TagButtonText>#{data[0]}</TagButtonText>

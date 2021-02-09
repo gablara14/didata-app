@@ -41,12 +41,28 @@ const CommentView = styled.View`
 const Container = styled.View`
     margin-bottom: 70px
 `
+const IconContainer = styled.View`
+    border: 0.5px solid rgba(0,0,0,0.2);
+    padding: 15px
+`
+
 
 const CommunityPost = () => {
     return (
         <Container>
-            <Text>Vocês perguntaram e o Gaulers respondeu. Tem um trecho no youtube também, vai la ver!</Text>
-            <FakeImage />
+
+            <FlexView>
+                <FakeUserImage/>
+                <Username style={{marginLeft: 5}}>Gabriel Lara</Username>
+            </FlexView>
+            
+
+
+            <View>
+                <FakeImage />
+                <IconContainer />
+            </View>
+
             <FlexView>
                 <FakeUserImage/>
                 <CommentView>
