@@ -57,7 +57,7 @@ class Form extends Component {
             return(
                 <View>
                     <Text>
-                        {this.props.tagList}
+                        {this.props.tagList.map(tag => tag.name)}
                     </Text>
                     <Tags data={FIRSTDATA} />
                     <Tags data={SECONDDATA} />
@@ -96,7 +96,7 @@ class Form extends Component {
 
 function mapStateToProps(state){
     return{
-        tagList: state.tagList
+        tagList:  Object.values(state.tagList),
     }
 }
 

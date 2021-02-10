@@ -2,10 +2,20 @@ import React, {Component} from 'react'
 import {SignContainer, ContinueButton, ContinueButtonText, LabelText, TextInput, FormView } from './styles'
 import * as actions from '../../actions'
 import {connect} from 'react-redux'
+import ErrorMessage from './components/ErrorMessage'
+import { ActivityIndicator } from 'react-native'
 
 class SignInScreen extends Component {
 
-    state = { email: '', password: '' }
+    state = { email: '', password: '' , loader: false}
+
+    onSubmit(){
+        this.setState({ loader: true })
+        this.props.signIn({ email: this.state.email, password: this.state.password}).then(() => {
+            this.setState({ loader: false })
+        })
+        
+    }
 
 
     render(){
@@ -35,15 +45,28 @@ class SignInScreen extends Component {
 
 
                 
-                <ContinueButton onPress={() => this.props.sinIn({ email: this.state.email, password: this.state.password})}>
-                    <ContinueButtonText>
-                        Continue
-                    </ContinueButtonText>
+                <ContinueButton onPress={() => this.onSubmit()}>
+ 
+                    {
+                        this.state.loader
+                        ? <ActivityIndicator size="small" color="white"/>
+                        : <ContinueButtonText>Continue</ContinueButtonText>
+                    }
+
                 </ContinueButton>
+                <ErrorMessage
+                    message={this.props.errorMessage}
+                />
             </SignContainer>
         )
     }
 
 }
 
-export default connect(null, actions )(SignInScreen)
+function MapStateToProps(state){
+    return{
+        errorMessage: state.auth.errorMessage
+    }
+}
+
+export default connect(MapStateToProps, actions )(SignInScreen)

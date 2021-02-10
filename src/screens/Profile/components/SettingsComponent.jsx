@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 
-import { Text, View, FlatList, TouchableOpacity, Touchable } from 'react-native'
-import { AntDesign, Feather  } from '@expo/vector-icons'; 
+import { Text, View, FlatList, TouchableOpacity, Touchable, Alert } from 'react-native'
+import { AntDesign, Feather, MaterialIcons   } from '@expo/vector-icons'; 
 
+import * as actions from '../../../actions'
+import { connect } from 'react-redux'
 import { navigate } from '../../../navigationRef'
 
 
@@ -26,6 +28,7 @@ const ItemContainer = styled.View`
 `
 
 const ItemText = styled.Text`
+    font-size: 14px;
     margin-left: 7px
 `
 
@@ -43,28 +46,46 @@ const Container = styled.View`
 
 
 
-const SettingsComponent = ({ title, data }) => {
-    return(
+class SettingsComponent extends Component {
+
+    render(){
+            return(
         <Container>
             <TitleContainer>
-                <Title>{title}</Title>
+                <Title>{this.props.title}</Title>
             </TitleContainer>
             
             <FlatList
                 scrollEnabled={false}
                 showsVerticalScrollIndicator={false}
                 keyExtractor={data => data.id}
-                data={data}
+                data={this.props.data}
                 renderItem={({ item }) => {
                     return(
                         <TouchableOpacity
                             // onPress={() => navigate(item.navigateTo)}
+                            onPress={() => Alert.alert(
+                                'Logout',
+                                'Do you want to logout?',
+                                [
+                                  {       
+                                    text: 'Cancel',       
+                                    onPress: () => console.log('Cancel Pressed'),       
+                                    style: 'cancel',     
+                                  },     
+                                  {
+                                    text: 'OK', 
+                                    onPress: () => this.props.signOut()
+                                  },   
+                                ],   
+                                { cancelable: false }, 
+                              )}
                         >
                             <ItemContainer>
 
                                
                                 <FlexView>
-                                    <Feather name="help-circle" size={18} color="#8C8C8C" />
+                                    <MaterialIcons name={item.iconName} size={20} color="black" />
                                     <ItemText>{ item.text }</ItemText> 
                                 </FlexView>
                                 
@@ -79,7 +100,9 @@ const SettingsComponent = ({ title, data }) => {
         </Container>
 
     )
+    }
+
 }
 
 
-export default SettingsComponent
+export default connect(null, actions)(SettingsComponent) 

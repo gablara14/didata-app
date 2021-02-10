@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-
+import _ from 'lodash'
 
 function countReducer(state = null, action){
     switch (action.type) {
@@ -15,21 +15,25 @@ function themeReducer(state = true, action){
     switch (action.type) {
         case 'CHANGE_THEME':
             return action.payload || false
+        
         default:
             return state
     }
 }
 
-function tagReducer(state = [], action){
+function tagReducer(state = {}, action){
     switch (action.type){
         case 'CHANGE_TAGS':
-            return [ ...state, action.payload]
+            return { ...state,  [action.payload.id]: action.payload}
+        case 'DELETE_TAG':
+            console.log(_.omit(state, action.payload))
+            return  _.omit(state, action.payload)
         default:
             return state
     }
 }
 
-function authReducer(state = null, action){
+function authReducer(state =  { token: null, errorMessage: '' }, action){
     switch (action.type){
         case 'ADD_ERROR':
             return {...state, errorMessage: action.payload }

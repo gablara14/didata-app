@@ -3,6 +3,7 @@ import { Text, View, FlatList } from 'react-native'
 import styled from 'styled-components/native'
 import * as actions from '../../actions'
 import { connect } from 'react-redux'
+import { navigate } from '../../navigationRef'
 
 const TagButton = styled.TouchableOpacity`
     background-color: #FF4646;
@@ -20,7 +21,27 @@ const TagButtonText = styled.Text`
 class TagInput extends Component  {
     
 
+    renderButton(item){
 
+ 
+
+        if (this.props.tagList.length){
+            let result =this.props.tagList.find((tag) => {
+                return tag.id == item.id
+            })
+            if(result){
+                this.props.deleteTag(item)
+                console.log('delete')
+            } else   {
+                this.props.selectTags(item)
+            }
+        } else {
+            this.props.selectTags(item)
+            console.log('add')
+        }
+
+
+    }
 
 
     render(){
@@ -35,10 +56,14 @@ class TagInput extends Component  {
                     renderItem={({item}) => {
                         return (
                             <View style={{ padding: 5}}> 
-                                <TagButton onPress={()  => this.props.selectTags(item.name)}>
+                                <TagButton
+                                    // onPress={()  => this.props.selectTags(item.name)}
+                                    onPress={() => this.renderButton(item)}
+                                >
                                     <TagButtonText >#{item.name}</TagButtonText>
                                 </TagButton>
                             </View>
+                            // this.renderButton(item)
                         )
                     }}
                 />
@@ -52,9 +77,12 @@ class TagInput extends Component  {
 
 function mapStateToProps(state){
     return{
-        tagList: state.tagList
+        tagList:  Object.values(state.tagList),
     }
 }
 
 
 export default connect(mapStateToProps, actions)(TagInput)
+
+
+

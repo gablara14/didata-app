@@ -24,6 +24,10 @@ export const selectTags = (data) => async dispatch => {
     dispatch({ type: 'CHANGE_TAGS', payload: data}) 
 }
 
+export const deleteTag = (data) => async dispatch => {
+    dispatch({ type: 'DELETE_TAG', payload: data }) 
+}
+
 
 export const tryLocalSignin = () => async dispatch=> {
     try {
@@ -41,6 +45,20 @@ export const tryLocalSignin = () => async dispatch=> {
  
 
 
+export const signIn =  ({ email, password }) => async dispatch =>  {
+    try {
+        const res = await axiosApi.post('/signin', { email, password })
+        await AsyncStorage.setItem('token', res.data.token)
+        dispatch({ type: 'SIGN_IN', payload: res.data.token})
+        navigate('Home')
+    } catch (err) {
+        dispatch({
+            type: 'ADD_ERROR',
+            payload: 'Something went wrong with sign in'
+        })
+    }
+}
+
 
 
 
@@ -55,3 +73,8 @@ export const signUp = ({ email, password }) => async dispatch => {
     }
 }
 
+export const signOut = () => async dispatch => {
+    await AsyncStorage.removeItem('token')
+    dispatch({ type: 'SIGN_OUT' })
+    navigate('loginFlow')
+}
