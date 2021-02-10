@@ -27,11 +27,11 @@ const ButtonText = styled.Text`
 `
 
 
-const RegisterOrLoginScreen = () => {
+const RegisterOrLoginScreen = ({ navigation }) => {
     return (
         <Container>
 
-            <TouchableOpacity style={{marginBottom:30}}>
+            <TouchableOpacity onPress={() => navigation.navigate('SignIn')} style={{marginBottom:30}}>
                 <ButtonText
                     style={{
                         
@@ -45,7 +45,7 @@ const RegisterOrLoginScreen = () => {
             
 
 
-            <CreateAccButton>
+            <CreateAccButton  onPress={() => navigation.navigate('SignUp')}>
                 <ButtonText style={{color: 'white'}}>
                     Create an Account
                 </ButtonText>

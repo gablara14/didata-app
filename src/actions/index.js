@@ -25,12 +25,12 @@ export const selectTags = (data) => async dispatch => {
 }
 
 
-export const tryLocalSignin = dispatch => async () => {
+export const tryLocalSignin = () => async dispatch=> {
     try {
         const token = await AsyncStorage.getItem('token')
         if (token) {
             dispatch({ type: 'SIGN_IN', payload: token})
-            // navigate('HOME')
+            navigate('Home')
         } else {
            navigate('RegisterOrLogin')
         }

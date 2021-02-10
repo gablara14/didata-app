@@ -3,7 +3,7 @@ import {SignContainer, ContinueButton, ContinueButtonText, LabelText, TextInput,
 import * as actions from '../../actions'
 import {connect} from 'react-redux'
 
-class SignInScreen extends Component {
+class SignUpScreen extends Component {
 
     state = { email: '', password: '' }
 
@@ -35,7 +35,7 @@ class SignInScreen extends Component {
 
 
                 
-                <ContinueButton onPress={() => this.props.sinIn({ email: this.state.email, password: this.state.password})}>
+                <ContinueButton onPress={() => this.props.signUp({ email: this.state.email, password: this.state.password})}>
                     <ContinueButtonText>
                         Continue
                     </ContinueButtonText>
@@ -46,4 +46,4 @@ class SignInScreen extends Component {
 
 }
 
-export default connect(null, actions )(SignInScreen)
+export default connect(null, actions )(SignUpScreen)

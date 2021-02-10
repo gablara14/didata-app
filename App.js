@@ -28,7 +28,8 @@ import {
 } from './src/settings/NavigationOptions'
 import ResolveAuthScreen from './src/screens/Auth/ResolveAuthScreen' 
 import RegisterOrLoginScreen  from './src/screens/Auth/RegisterOrLoginScreen'
-
+import SigninScreen from './src/screens/Auth/SigninScreen'
+import SignUpScreen from './src/screens/Auth/SignupScreen'
 // import AuthorScreen from './src/screens/Home/authors/AuthorScreen'
 
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
@@ -128,7 +129,9 @@ const profileFlow = createStackNavigator(
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
   loginFlow: createStackNavigator({
-    RegisterOrLogin: RegisterOrLoginScreen
+    RegisterOrLogin: RegisterOrLoginScreen,
+    SignIn: SigninScreen,
+    SignUp: SignUpScreen
   }),
   mainFlow: createMaterialBottomTabNavigator(
     {
