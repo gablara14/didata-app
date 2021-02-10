@@ -1,16 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Text, View, FlatList } from 'react-native'
 import styled from 'styled-components/native'
+import * as actions from '../../actions'
+import { connect } from 'react-redux'
 
-
-const FlexView = styled.View`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    
-`
 const TagButton = styled.TouchableOpacity`
     background-color: #FF4646;
     padding: 10px 12px;
@@ -24,33 +17,44 @@ const TagButtonText = styled.Text`
 `
 
 
-const TagInput = ({ data }) => {
-    return(
-        <FlexView>
+class TagInput extends Component  {
+    
 
-            <View>
-                <TagButton>
-                    <TagButtonText>#{data[0]}</TagButtonText>
-                </TagButton>
-            </View>
-            <View>
-                <TagButton>
-                    <TagButtonText>#{data[1]}</TagButtonText>
-                </TagButton>
-            </View>
-            <View>
-                <TagButton>
-                    <TagButtonText>#{data[2]}</TagButtonText>
-                </TagButton>
-            </View>
-            <View>
-                <TagButton>
-                    <TagButtonText>#{data[3]}</TagButtonText>
-                </TagButton>
-            </View>
-        </FlexView>
-    )
+
+
+
+    render(){
+        return(
+            <>
+               
+                <FlatList
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    data={this.props.data}
+                    keyExtractor={data => data.id}
+                    renderItem={({item}) => {
+                        return (
+                            <View style={{ padding: 5}}> 
+                                <TagButton onPress={()  => this.props.selectTags(item.name)}>
+                                    <TagButtonText >#{item.name}</TagButtonText>
+                                </TagButton>
+                            </View>
+                        )
+                    }}
+                />
+            </>
+        )
+    }
+    
+
+
+}
+
+function mapStateToProps(state){
+    return{
+        tagList: state.tagList
+    }
 }
 
 
-export default TagInput
+export default connect(mapStateToProps, actions)(TagInput)

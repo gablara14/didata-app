@@ -7,8 +7,9 @@ import React from 'react'
 import { createStore, applyMiddleware } from 'redux'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { setNavigator } from './src/navigationRef'
+import reduxThunk from 'redux-thunk'
 
-const store = createStore(reducers, {}, applyMiddleware())
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk))
 
 import { FontAwesome, AntDesign, Ionicons } from '@expo/vector-icons';
 import {
@@ -25,6 +26,8 @@ import {
   CreateCommunityScreen,
   CommunityPostsScreen
 } from './src/settings/NavigationOptions'
+import ResolveAuthScreen from './src/screens/Auth/ResolveAuthScreen' 
+import RegisterOrLoginScreen  from './src/screens/Auth/RegisterOrLoginScreen'
 
 // import AuthorScreen from './src/screens/Home/authors/AuthorScreen'
 
@@ -123,7 +126,10 @@ const profileFlow = createStackNavigator(
 
 
 const switchNavigator = createSwitchNavigator({
-
+  ResolveAuth: ResolveAuthScreen,
+  loginFlow: createStackNavigator({
+    RegisterOrLogin: RegisterOrLoginScreen
+  }),
   mainFlow: createMaterialBottomTabNavigator(
     {
       Home:  homeFlow,

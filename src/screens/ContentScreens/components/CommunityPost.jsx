@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 
 import styled from 'styled-components/native'
-
+import { MaterialIcons, FontAwesome5, Fontisto } from '@expo/vector-icons';
 
 const FakeImage = styled.View`
     width: 100%;
@@ -43,7 +43,10 @@ const Container = styled.View`
 `
 const IconContainer = styled.View`
     border: 0.5px solid rgba(0,0,0,0.2);
-    padding: 15px
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: row;
+
 `
 
 
@@ -60,7 +63,11 @@ const CommunityPost = () => {
 
             <View>
                 <FakeImage />
-                <IconContainer />
+                <IconContainer >
+                    <MaterialIcons name="favorite-outline" size={26} color="black" />
+                    <FontAwesome5 style={{marginLeft: 15}} name="comment" size={24} color="black" />
+                    
+                </IconContainer>
             </View>
 
             <FlexView>
