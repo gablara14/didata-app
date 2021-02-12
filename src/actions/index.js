@@ -13,19 +13,21 @@ import { AsyncStorage } from 'react-native'
 //     }
 // }
 
-
-export const changeTheme = () => async dispatch => {
+export const changeTheme = () =>  dispatch => {
     
     dispatch({ type: 'CHANGE_THEME', payload: true})
 }
 
 export const selectTags = (data) => async dispatch => {
-
     dispatch({ type: 'CHANGE_TAGS', payload: data}) 
 }
 
 export const deleteTag = (data) => async dispatch => {
     dispatch({ type: 'DELETE_TAG', payload: data }) 
+}
+
+export const clearTags = () =>  dispatch => {
+    dispatch({ type: 'CLEAR_TAGS' }) 
 }
 
 
@@ -60,7 +62,7 @@ export const signIn =  ({ email, password }) => async dispatch =>  {
     } catch (err) {
         dispatch({
             type: 'ADD_ERROR',
-            payload: 'Something went wrong with sign in'
+            payload: 'Invalid password or email'
         })
     }
 }
@@ -88,6 +90,10 @@ export const signOut = () => async dispatch => {
     navigate('loginFlow')
 }
 
+export const clearErrorMessage = () => dispatch => {
+    dispatch({ type: 'CLEAR_ERROR_MESSAGE'})
+}
+
 
 /////////////////////////////////////////
 ///////// USER ACTIONS /////////////
@@ -102,7 +108,8 @@ export const fetchUser = ({ id }) => async dispatch => {
 export const updateUser = (id, data) => async dispatch => {
     const { name, username, bio }  = data
     const res = await axiosApi.patch(`/users/${id}`, { name, username, bio })
-    dispatch({ type: 'FETCH_USER', payload: res.data })
+    await AsyncStorage.setItem('profile', JSON.stringify(res.data))
+    dispatch({ type: 'FETCH_PROFILE', payload: res.data })
 }
 
 
@@ -125,8 +132,8 @@ export const fetchCommunitiesByUser= ({ id }) => async dispatch => {
 ////////////////////////////////////////
 
 export const createCommunity = (data) => async dispatch => {
-    const { name, description, imageURL, userId } = data
-    const res = await axiosApi.post('/communities', {name, description, imageURL, userId})
+    const { name, description, imageURL, userId, categories } = data
+    const res = await axiosApi.post('/communities', {name, description, imageURL, userId, categories})
     dispatch({ type: 'FETCH_COMMUNITY', payload: res.data })
 }
 export const fetchCommunity = ({ id }) => async dispatch => {

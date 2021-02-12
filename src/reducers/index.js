@@ -26,13 +26,13 @@ function tagReducer(state = {}, action){
         case 'CHANGE_TAGS':
             return { ...state,  [action.payload.id]: action.payload}
         case 'DELETE_TAG':
-            console.log(_.omit(state, action.payload))
-            return  _.omit(state, action.payload)
+            return  _.omit(state, action.payload.id)
+        case 'CLEAR_TAGS':
+            return {}
         default:
             return state
     }
 }
-
 
 function profileReducer(state = null, action){
     switch (action.type){

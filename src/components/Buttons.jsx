@@ -57,17 +57,17 @@ export const CreateNewCommunity = () => {
     )
 }
 
-export const ConfirmCreateNewCommunity = () => {
+export const ConfirmCreateNewCommunity = ({ onSubmit }) => {
     return(
-        <TouchableOpacity  style={styles.createCommunityButton} >
+        <TouchableOpacity onPress={onSubmit}  style={styles.createCommunityButton} >
            <Text style={styles.text}>Create!</Text> 
         </TouchableOpacity>
     )
 }
 
-export const UpdateUserButton = () => {
+export const UpdateUserButton = ({ onSubmit }) => {
     return(
-        <TouchableOpacity style={styles.createCommunityButton} >
+        <TouchableOpacity onPress={onSubmit} style={styles.createCommunityButton} >
            <Text style={styles.text}>Save</Text> 
         </TouchableOpacity>
     )

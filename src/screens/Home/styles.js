@@ -34,6 +34,17 @@ export const Title = styled.Text`
   font-weight: bold
 `;
 
+export const Subtitle = styled.Text`
+  color: rgba(0,0,0,0.3);
+  font-size: 14px;
+  font-weight: 500
+`
+export const NotFollowingText = styled.Text`
+  color: rgba(0,0,0,0.4);
+  font-size: 14px;
+  font-weight: 500
+`
+
 export const BigTitle = styled.Text`
   font-size: 30px;
   font-weight: bold
@@ -43,9 +54,8 @@ export const BigTitle = styled.Text`
 
 export const FlexView = styled.View`
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    padding: 15px
+    padding: 20px 15px
 `
 
 export const ScrollView = styled.View`

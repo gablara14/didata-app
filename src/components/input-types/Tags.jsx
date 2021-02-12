@@ -4,13 +4,21 @@ import styled from 'styled-components/native'
 import * as actions from '../../actions'
 import { connect } from 'react-redux'
 import { navigate } from '../../navigationRef'
-
+import { NavigationEvents } from 'react-navigation'
 const TagButton = styled.TouchableOpacity`
     background-color: #FF4646;
     padding: 10px 12px;
     border-radius: 4px
-
 `
+
+const SelectedButton = styled.TouchableOpacity`
+    background-color: #cc0000;
+    padding: 10px 12px;
+    border-radius: 4px
+`
+
+
+
 const TagButtonText = styled.Text`
     font-size: 12px;
     color: white;
@@ -21,10 +29,13 @@ const TagButtonText = styled.Text`
 class TagInput extends Component  {
     
 
+    state = { }
+
+
+
+
+
     renderButton(item){
-
- 
-
         if (this.props.tagList.length){
             let result =this.props.tagList.find((tag) => {
                 return tag.id == item.id
@@ -39,15 +50,43 @@ class TagInput extends Component  {
             this.props.selectTags(item)
             console.log('add')
         }
+    }
+
+    renderTagButton(item){
+
+        let result = this.props.tagList.find((tag) => {
+            return tag.id == item.id
+        })
+        if (result){
+            return(
+                <SelectedButton
+                    onPress={() => this.props.deleteTag(item)}
+                >
+                    <TagButtonText >#{item.name}</TagButtonText>
+                </SelectedButton>
+            )
+        }
+        return(
+            <TagButton
+                onPress={() => this.props.selectTags(item)}
+            >
+                <TagButtonText >#{item.name}</TagButtonText>
+            </TagButton>
+    
+        )
+
+
+
 
 
     }
 
 
+
     render(){
         return(
             <>
-               
+            <NavigationEvents onWillBlur={() => this.props.clearTags()} />
                 <FlatList
                     horizontal
                     showsHorizontalScrollIndicator={false}
@@ -56,12 +95,8 @@ class TagInput extends Component  {
                     renderItem={({item}) => {
                         return (
                             <View style={{ padding: 5}}> 
-                                <TagButton
-                                    // onPress={()  => this.props.selectTags(item.name)}
-                                    onPress={() => this.renderButton(item)}
-                                >
-                                    <TagButtonText >#{item.name}</TagButtonText>
-                                </TagButton>
+                                {this.renderTagButton(item)}
+
                             </View>
                             // this.renderButton(item)
                         )

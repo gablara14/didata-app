@@ -52,7 +52,9 @@ const THIRDATA = [
 
 class Form extends Component {
 
-    inputType(type){
+
+
+    inputType({ type }){
         if (type == 'tag'){
             return(
                 <View>
@@ -65,7 +67,9 @@ class Form extends Component {
                 </View>
             )
         } else {
-            return <Input  style={{ borderBottomWidth: 0.5,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0,0,0,0.6)' }}  />
+            return <Input
+                        style={{ borderBottomWidth: 0.5,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0,0,0,0.6)' }}
+                    />
         }
 
     }
@@ -84,7 +88,7 @@ class Form extends Component {
                         return(
                         <ItemView>
                             <Label >{item.label}</Label>
-                            {this.inputType(item.type)}
+                            {this.inputType(item)}
                             
                         </ItemView>
                         ) 

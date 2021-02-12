@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View , ScrollView, TouchableOpacity } from 'react-native'
-import { Container,  BigTitle  } from './styles'
+import { Container,  BigTitle, Subtitle, NotFollowingText, Title, FlexView  } from './styles'
 
 
 import NewReleases from './components/NewReleases'
@@ -43,16 +43,26 @@ const Home = ({ navigation }) => {
                         </View>
                    
 
-                    <Spacer>
+                    {/* <Spacer>
                         <NewReleases/>
-                    </Spacer>
-                    <Spacer>
-                        <TrendingAuthors />
-
-                    </Spacer>
+                    </Spacer> */}
                     <Spacer>
                         <Hottest/>
                     </Spacer>
+                    <Spacer>
+                    <FlexView>
+                        <Title>Post Feed</Title>
+                        <Subtitle style={{paddingVertical: 5}}>Posts from communities you are in</Subtitle>
+                        <NotFollowingText>
+                            You aren’t following any community yet. We recommend these authors with similar interests:
+                        </NotFollowingText>
+                       
+                    </FlexView>
+                     
+                    <TrendingAuthors />
+
+                    </Spacer>
+
             </ScrollView>
 
                 

@@ -4,7 +4,7 @@ import {SignContainer, ContinueButton, ContinueButtonText, LabelText, TextInput,
 import * as actions from '../../actions'
 import {connect} from 'react-redux'
 import ErrorMessage from './components/ErrorMessage'
-
+import { NavigationEvents } from 'react-navigation'
 
 class SignUpScreen extends Component {
 
@@ -22,6 +22,7 @@ class SignUpScreen extends Component {
     render(){
         return (
             <SignContainer>
+                <NavigationEvents onWillFocus={() => this.props.clearErrorMessage()} />
 
                 <FormView>
                     <LabelText>Your name</LabelText>

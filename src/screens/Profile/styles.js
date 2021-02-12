@@ -95,3 +95,46 @@ export const Bookmark = styled(Feather)`
   border-color: #e6e6e6;
   border-radius: 2px;
 `;
+
+export const ImageFakeContainer = styled.View`
+    width: 100%;
+    height: 350px
+    background-color: #C4C4C4
+`
+
+export const Input = styled.TextInput`
+    font-size: 16px;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+`
+
+export const Label = styled.Text`
+  font-size: 12px;
+  color: rgba(0,0,0,0.6)
+`
+
+export const FormContainer = styled.View`
+    padding: 10px;
+    margin-top: 15px
+    
+`
+
+export const FormTitle = styled.Text`
+    font-size: 18px;
+    margin-bottom: 15px
+    
+`
+
+
+export const TagButton = styled.TouchableOpacity`
+  background-color: #FF4646;
+  padding: 10px 12px;
+  border-radius: 4px
+`
+export const TagButtonText = styled.Text`
+  font-size: 12px;
+  color: white;
+  font-weight: 300
+`
+

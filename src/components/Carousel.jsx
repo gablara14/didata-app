@@ -28,13 +28,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    authorContent:{
+    authorTheme:{
         fontSize: 12,
-        margin: 'auto'
+        margin: 'auto',
+        fontWeight: '500',
+        color: 'rgba(0,0,0,0.4)'
+    },
+    authorContent:{
+        fontSize: 10,
+        fontWeight: '500',
+        margin: 'auto',
+        color: 'rgba(0,0,0,0.4)'
     },
     authorCard: {
         marginTop: 10,
-        paddingHorizontal: 5,
+        paddingHorizontal: 7,
         marginRight: 2,
         marginLeft: 10,
         flex: 1,
@@ -73,6 +81,14 @@ const styles = StyleSheet.create({
         
         justifyContent: 'center',
         
+    },
+    hottestCommunitiesCard:{
+        flex: 1,
+        height: 200,
+        width: 325,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     hottestInfo: {
         paddingHorizontal: 10
@@ -150,6 +166,7 @@ export const TrendingAuthors = ({ data }) => {
                                 
                             <View style={styles.authorInfo}>
                                 <Text style={styles.authorName}>{item.name}</Text>
+                                <Text style={styles.authorTheme} >Finances</Text>
                                 <Text style={styles.authorContent} >6 comunidades</Text>
                             </View>
 
@@ -208,6 +225,52 @@ export class NewReleasesCarousel extends Component{
     }
 
 }
+
+
+
+export class HottestCommunities extends Component{
+    render(){
+        return(
+            <Carousel
+            
+                ref={(c) => {this._carousel = c}}
+                sliderWidth={deviceWidth}
+                sliderHeight={deviceWidth}
+                itemWidth={320}
+                data={this.props.data}
+                keyExtractor={data => data.name}
+                renderItem={({ item }) => {
+                    return (
+                        <TouchableOpacity                         onPress={() => navigate('Community', { id: item.id, name: item.name, image_url: item.image_url})} style={styles.newReleasesButton}>
+                            <View style={styles.hottestCommunitiesCard} >
+                                {/* <Image style={styles.backgroundImage} source={{ uri:  thriverBucket + item.image_url }} /> */}
+                                    
+                                <BackgroundImage >
+                                    <Image
+                                        style={styles.backgroundImage}
+                                        source={{ uri:  thriverBucket + item.image_url }}
+                                    />
+                                    <DarkLayer />
+                                </BackgroundImage>
+
+
+                                    <View style={styles.hottestInfo}>
+                                        <Text style={styles.hottestTitle} >{item.name}</Text>
+                                        <Text  style={styles.hottestSubtitle}>#investments</Text>
+                                    </View>
+
+                                
+                            </View> 
+                        </TouchableOpacity>
+
+                    )}}
+            />
+    
+        )
+    }
+
+}
+
 
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Title, FlexView, ScrollView } from '../styles'
+import {  Title, FlexView, ScrollView, Subtitle, NotFollowingText } from '../styles'
 import { View } from 'react-native'
 import { TrendingAuthors} from '../../../components/Carousel'
 import { SeeAll } from '../../../components/Buttons'
@@ -14,15 +14,9 @@ const AUTHORDATA = [
 
 const TrendingAuthorsComponent = () => {
     return (
-        <ScrollView>
-            <FlexView>
-                <Title>Trending Authors</Title>
-                {/* <SeeAll navigateTo='AuthorList' /> */}
-            </FlexView>
             <View>
                 <TrendingAuthors data={AUTHORDATA} /> 
             </View>
-        </ScrollView>
     )
 }
 

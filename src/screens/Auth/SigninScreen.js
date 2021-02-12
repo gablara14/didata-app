@@ -4,6 +4,7 @@ import * as actions from '../../actions'
 import {connect} from 'react-redux'
 import ErrorMessage from './components/ErrorMessage'
 import { ActivityIndicator } from 'react-native'
+import { NavigationEvents } from 'react-navigation'
 
 class SignInScreen extends Component {
 
@@ -21,6 +22,7 @@ class SignInScreen extends Component {
     render(){
         return (
             <SignContainer>
+                <NavigationEvents onWillFocus={() => this.props.clearErrorMessage()} />
     
                <FormView>
                     <LabelText>Your email</LabelText>
@@ -43,8 +45,6 @@ class SignInScreen extends Component {
                     />
                 </FormView>
 
-
-                
                 <ContinueButton onPress={() => this.onSubmit()}>
  
                     {
@@ -52,7 +52,6 @@ class SignInScreen extends Component {
                         ? <ActivityIndicator size="small" color="white"/>
                         : <ContinueButtonText>Continue</ContinueButtonText>
                     }
-
                 </ContinueButton>
                 <ErrorMessage
                     message={this.props.errorMessage}

@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { View, Text, SafeAreaView } from 'react-native'
+import React, { useState, Component } from 'react'
+import { View, Text, SafeAreaView, ActivityIndicator } from 'react-native'
 import styled from 'styled-components/native'
 import { Flex } from '../Explore/styles'
 import { Container } from './styles'
-import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import { UpdateUserButton } from '../../components/Buttons'
+import * as actions from '../../actions'
 
 const FakeImage = styled.View`
     width: 82px;
@@ -34,16 +35,50 @@ const Username = styled.Text`
     color: rgba(0,0,0,0.5)
 `
 
-export default function EditProfileScreen() {
 
-    const { name, imageURL, username, bio, userId } = useSelector(state => state.profile)
+const CreateButton = styled.TouchableOpacity`
+    background-color: red;
+    width: 80%;
+    padding: 15px;
+    borderRadius: 4px;
+    display: flex;
+    alignItems: center;
+    justifyContent: center;
+    margin: 25px
+`
+const ButtonText = styled.Text`
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff
+`
 
-    const [ nameValue, setNameValue ] = useState(name)
-    const [ usernameValue, setUsernameValue ] = useState(username)
-    const [ bioValue, setBioValue ] = useState(bio)
 
 
-    const renderInput = (label, initialValue, onChangeText) => {
+
+class EditProfileScreen extends Component {
+
+
+
+    state = {
+        nameValue: this.props.profile.name,
+        usernameValue:  this.props.profile.username,
+        bioValue: this.props.profile.bio,
+        loader: false
+    }
+
+
+    onSubmit = () => {
+        this.setState({ loader: true })
+        this.props.updateUser(this.props.profile._id, {
+            name: this.state.nameValue ,
+            username: this.state.usernameValue,
+            bio: this.state.bioValue
+        }).then(() => this.setState({ loader: false }))
+    }
+
+    
+
+    renderInput(label, initialValue, onChangeText){
         return(
             <>
                 <Label >{label}</Label>
@@ -56,29 +91,47 @@ export default function EditProfileScreen() {
         )
     }
 
+    render(){
+        const { name, imageURL, username, bio, userId } = this.props.profile
+        return (
+            <Container style={{alignItems: 'center'}}>
+                <View style={{ padding: 40}}>
+                    <FakeImage />
+                    <View style={{ paddingVertical: 15 }}>
+                        <Name>{name}</Name>
+                        <Username>@{username}</Username>
+                    </View>
 
-    return (
-        <Container style={{alignItems: 'center'}}>
-            <View style={{ padding: 40}}>
-                <FakeImage />
-                <View style={{ paddingVertical: 15 }}>
-                    <Name>{name}</Name>
-                    <Username>@{username}</Username>
+                </View>
+                
+
+                <View style={{width: '90%'}}>
+                    {this.renderInput('Name', this.state.nameValue,  (e) => this.setState({ nameValue: e }) )}
+                    {this.renderInput('Username', this.state.usernameValue, (e) => this.setState({ usernameValue: e }) )}
+                    {this.renderInput('Bio', this.state.bioValue, (e) => this.setState({ bioValue: e }) )}
                 </View>
 
-            </View>
-            
 
-            <View style={{width: '90%'}}>
-                {renderInput('Name', nameValue, setNameValue)}
-                {renderInput('Username', usernameValue, setUsernameValue)}
-                <Label >Bio</Label>
-                <Input multiline = {true} numberOfLines = {4} value={bioValue} onChangeText={setBioValue}
-                    style={{ borderBottomWidth: 0.5,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0,0,0,0.6)' }}
-                />
-            </View>
+                
+                <CreateButton onPress={this.onSubmit}>
+                    {
+                        this.state.loader
+                        ? <ActivityIndicator size="small" color="white"/> 
+                        : <ButtonText>Save!</ButtonText>
+                    }
+                </CreateButton> 
 
-            <UpdateUserButton />
-        </Container>
-    )
+
+            </Container>
+        )
+    }
+
 }
+
+function MapStateToProps (state) {
+    return{
+        profile: state.profile
+    }
+}
+
+export default connect(MapStateToProps, actions)(EditProfileScreen)
