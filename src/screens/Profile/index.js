@@ -1,5 +1,6 @@
 import React from 'react'
 import {  StyleSheet,  Image, ScrollView, TouchableOpacity, Touchable } from 'react-native'
+import { useSelector } from 'react-redux'
 import {
     MaterialCommunityIcons,
     AntDesign,
@@ -29,6 +30,9 @@ import {
 import { SelectedOptions } from '../../components/profile/SelectedOptions'
 
 const Profile = ({ navigation }) => {
+
+  const { name, imageURL, username } = useSelector(state => state.profile)
+
     return(
         <Container>
         <Header>
@@ -38,7 +42,7 @@ const Profile = ({ navigation }) => {
             size={24}
             color="black"
           /> */}
-          <Title>Gabriel Lara</Title>
+          <Title>{name}</Title>
           {/* <MaterialIcons name="arrow-drop-down" size={24} color="black" /> */}
           <TouchableOpacity
             style={{ position: 'absolute', right: 13, top: 12 }}
@@ -56,7 +60,7 @@ const Profile = ({ navigation }) => {
         <ScrollView>
           <Content>
             <Image style={styles.image} source={require('../../../assets/musk.jpg')} />
-            <Username>@gabriel.lara</Username>
+            <Username>@{username}</Username>
             <Stats>
               <StatsColumn>
                 <StatsNumber>1950</StatsNumber>
@@ -74,7 +78,7 @@ const Profile = ({ navigation }) => {
               </StatsColumn>
             </Stats>
             <ProfileColumn>
-              <ProfileEdit>
+              <ProfileEdit onPress={() => navigation.navigate('EditProfile')}>
                 <ProfileText>Editar perfil</ProfileText>
               </ProfileEdit>
               {/* <Bookmark name="bookmark" size={24} color="black" /> */}

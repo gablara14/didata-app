@@ -8,11 +8,12 @@ import ErrorMessage from './components/ErrorMessage'
 
 class SignUpScreen extends Component {
 
-    state = { email: '', password: '' , loader: false}
+    state = { email: '', password: '' , username: '', name: '', loader: false}
 
     onSubmit(){
+        const { email, password, username, name } = this.state
         this.setState({ loader: true })
-        this.props.signUp({ email: this.state.email, password: this.state.password}).then(() => {
+        this.props.signUp({ email, password, username, name }).then(() => {
             this.setState({ loader: false })
         })
         
@@ -21,6 +22,25 @@ class SignUpScreen extends Component {
     render(){
         return (
             <SignContainer>
+
+                <FormView>
+                    <LabelText>Your name</LabelText>
+                    <TextInput
+                        value={this.state.name} 
+                        onChangeText={e => this.setState({ name: e })} 
+                        autoCorrect={false}
+                    />
+                </FormView>
+
+                <FormView>
+                    <LabelText>Your Username</LabelText>
+                    <TextInput
+                        value={this.state.username} 
+                        onChangeText={e => this.setState({ username: e })} 
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                    />
+                </FormView>
     
                <FormView>
                     <LabelText>Your email</LabelText>
@@ -31,6 +51,8 @@ class SignUpScreen extends Component {
                         autoCorrect={false}
                     />
                 </FormView>
+
+                
 
                 <FormView>
                     <LabelText>Your Password</LabelText>

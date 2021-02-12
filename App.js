@@ -4,6 +4,8 @@ import { createStore, applyMiddleware } from 'redux'
 import reduxThunk from 'redux-thunk'
 import reducers from './src/reducers'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
+import { setCustomText, setCustomView } from 'react-native-global-props';
+
 import { createStackNavigator } from 'react-navigation-stack'
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
 import { setNavigator } from './src/navigationRef'
@@ -23,7 +25,7 @@ const store = createStore(reducers, {}, applyMiddleware(reduxThunk))
 const homeFlow = createStackNavigator(homeOptions.screens, homeOptions.options)
 const exploreFlow = createStackNavigator(exploreOptions.screens, exploreOptions.options)
 const activityFlow = createStackNavigator(activityOptions.screens, activityOptions.options)
-const profileFlow = createStackNavigator(profileOptions.screens, profileOptions.options)
+const profileFlow = createStackNavigator(profileOptions.screens, profileOptions.options )
 
 
 const switchNavigator = createSwitchNavigator({
@@ -36,7 +38,7 @@ const switchNavigator = createSwitchNavigator({
   mainFlow: createMaterialBottomTabNavigator(
     {
       Home:  homeFlow,
-      Explore: exploreFlow,
+      // Explore: exploreFlow,
       // Create: CreateScreen,
       Activity: activityFlow,
       Profile: profileFlow

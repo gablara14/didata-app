@@ -94,7 +94,7 @@ const CommunityScreen = ({ navigation }) => {
     }
 
     return (
-        <View>
+        <View style={{ backgroundColor: 'white', height: '100%', width: '100%'}}>
             <ScrollView>
                 <BackgroundImage
                     source={{ uri: thriverBucket + image_url }}

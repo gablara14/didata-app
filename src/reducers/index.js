@@ -33,6 +33,18 @@ function tagReducer(state = {}, action){
     }
 }
 
+
+function profileReducer(state = null, action){
+    switch (action.type){
+        case 'FETCH_PROFILE':
+            return action.payload || false
+        default:
+            return state
+    }
+}
+
+
+
 function authReducer(state =  { token: null, errorMessage: '' }, action){
     switch (action.type){
         case 'ADD_ERROR':
@@ -49,6 +61,7 @@ function authReducer(state =  { token: null, errorMessage: '' }, action){
 }
 
 export default combineReducers({
+    profile: profileReducer,
     auth: authReducer,
     tagList: tagReducer,
     theme: themeReducer,

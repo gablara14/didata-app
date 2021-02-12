@@ -38,9 +38,15 @@ const SmallText = styled.Text`
     font-size: 12px;
     padding-top: 2px
 `
+const Container = styled.View`
+    height: 100%;
+    width: 100%;
+    background-color: white
+`
 
 const CommunityPostsScreen = () => {
     return (
+        <Container>
         <SafeAreaView>
             <FlexView>
                 <FakeImage />
@@ -64,6 +70,7 @@ const CommunityPostsScreen = () => {
 
             
         </SafeAreaView>
+        </Container>
     )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { TouchableOpacity, StyleSheet, Text } from 'react-native'
 import { navigate } from '../navigationRef'
 
@@ -61,6 +61,14 @@ export const ConfirmCreateNewCommunity = () => {
     return(
         <TouchableOpacity  style={styles.createCommunityButton} >
            <Text style={styles.text}>Create!</Text> 
+        </TouchableOpacity>
+    )
+}
+
+export const UpdateUserButton = () => {
+    return(
+        <TouchableOpacity style={styles.createCommunityButton} >
+           <Text style={styles.text}>Save</Text> 
         </TouchableOpacity>
     )
 }

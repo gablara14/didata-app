@@ -8,24 +8,31 @@ import { thriverBucket, communitiesData } from '../../data/config.json'
 
 import CommunityList from './components/CommunityList'
 
+const Container = styled.View`
+    height: 100%;
+    width: 100%;
+    background-color: white
+`
 
 
 const Activity = () => {
     return(
-        <SafeAreaView >
-            <View>
-                <CommunityList
-                    title="Paid Communities"
-                    data={communitiesData}
-                />
+        <Container>
+            <SafeAreaView >
+                <View>
+                    <CommunityList
+                        title="Paid Communities"
+                        data={communitiesData}
+                    />
 
-                <CommunityList
-                    title="Free Communities"
-                    data={communitiesData}
-                />
+                    <CommunityList
+                        title="Free Communities"
+                        data={communitiesData}
+                    />
 
-            </View>
-        </SafeAreaView>
+                </View>
+            </SafeAreaView>
+        </Container>
     )
 }
 

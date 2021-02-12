@@ -73,6 +73,8 @@ class Form extends Component {
     render(){
         return (
             <Container>
+
+
                 <Title>{this.props.title}</Title>
                 <FlatList
                     showsVerticalScrollIndicator={false}
@@ -97,6 +99,7 @@ class Form extends Component {
 function mapStateToProps(state){
     return{
         tagList:  Object.values(state.tagList),
+        profile: state.profile
     }
 }
 
