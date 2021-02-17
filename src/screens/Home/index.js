@@ -39,7 +39,7 @@ const Home = ({ navigation }) => {
 
                    
                         <View style={{ marginLeft: 15, marginTop: 15 }}>
-                            <BigTitle>Discover</BigTitle>
+                            <BigTitle style={{ fontFamily: 'Circular_Black'}} >Discover</BigTitle>
                         </View>
                    
 
@@ -51,9 +51,9 @@ const Home = ({ navigation }) => {
                     </Spacer>
                     <Spacer>
                     <FlexView>
-                        <Title>Post Feed</Title>
-                        <Subtitle style={{paddingVertical: 5}}>Posts from communities you are in</Subtitle>
-                        <NotFollowingText>
+                        <Title style={{fontFamily: 'Circular_Bold'}}>Post Feed</Title>
+                        <Subtitle style={{paddingVertical: 5, fontFamily: 'Circular_Bold'}}>Posts from communities you are in</Subtitle>
+                        <NotFollowingText style={{ fontFamily: 'Circular_Bold'}}>
                             You aren’t following any community yet. We recommend these authors with similar interests:
                         </NotFollowingText>
                        

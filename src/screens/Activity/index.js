@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, SafeAreaView } from 'react-native'
+import { Text, View, SafeAreaView, ScrollView } from 'react-native'
 
 import Icon from 'react-native-vector-icons/Ionicons'
 import styled from 'styled-components/native'
@@ -19,18 +19,16 @@ const Activity = () => {
     return(
         <Container>
             <SafeAreaView >
-                <View>
+                <ScrollView>
                     <CommunityList
                         title="Paid Communities"
                         data={communitiesData}
                     />
-
                     <CommunityList
                         title="Free Communities"
                         data={communitiesData}
                     />
-
-                </View>
+                </ScrollView>
             </SafeAreaView>
         </Container>
     )

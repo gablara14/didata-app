@@ -15,7 +15,7 @@ const HottestComponent = () => {
     return (
         <ScrollView>
             <FlexView>
-                <Title> Hottest Communities </Title>
+                <Title style={{ fontFamily: 'Circular_Black'}}> Hottest Communities </Title>
                 {/* <SeeAll/> */}
             </FlexView>
             <View>

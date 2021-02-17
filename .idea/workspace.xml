@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4c44a3ae-ded3-4477-95bd-a4085277b78f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/axiosConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axiosConfig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Carousel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Carousel.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Home/components/Hottest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Home/components/Hottest.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Home/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Profile/EditProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Profile/EditProfileScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Profile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Profile/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1oP8aFDpXAzytHnTyhVsDg6VFx0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4c44a3ae-ded3-4477-95bd-a4085277b78f" name="Default Changelist" comment="" />
+      <created>1613176928810</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613176928810</updated>
+    </task>
+    <servers />
+  </component>
+</project>

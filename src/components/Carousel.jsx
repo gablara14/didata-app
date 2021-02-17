@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     authorName: {
-        fontWeight: 'bold'
+        fontFamily: 'Circular_Bold'
     },
     authorImage: {
         width: 60,
@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
     authorTheme:{
         fontSize: 12,
         margin: 'auto',
-        fontWeight: '500',
+        fontFamily: 'Circular_Book',
         color: 'rgba(0,0,0,0.4)'
     },
     authorContent:{
         fontSize: 10,
-        fontWeight: '500',
+        fontFamily: 'Circular_Book',
         margin: 'auto',
         color: 'rgba(0,0,0,0.4)'
     },
@@ -94,13 +94,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     hottestTitle: {
-        
-        fontWeight: 'bold',
+        fontFamily: 'Circular_Bold',
         fontSize: 16,
         color: 'white'
         
     },
     hottestSubtitle: {
+        fontFamily: 'Circular_Book',
         color: 'white'
     },
     backgroundImage: {

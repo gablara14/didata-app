@@ -12,8 +12,8 @@ const FakeImage = styled.View`
     background-color:  #C4C4C4
 `
 const FakeUserImage = styled.View`
-    width: 37px;
-    height: 37px;
+    width: 45px;
+    height: 45px;
     background-color: #C4C4C4;
     border-radius: 50px
 `
@@ -25,11 +25,11 @@ const FlexView = styled.View`
 `
 
 const Name = styled.Text`
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold
 `
 const Username = styled.Text`
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     color: rgba(0,0,0,0.5)
 `
@@ -46,6 +46,7 @@ const CommentView = styled.View`
     margin-left: 10px
 `
 const Container = styled.View`
+    
     margin-bottom: 70px
 `
 const IconContainer = styled.View`

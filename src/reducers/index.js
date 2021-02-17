@@ -60,11 +60,22 @@ function authReducer(state =  { token: null, errorMessage: '' }, action){
     }
 }
 
+function communitiesReducer(state = {}, action){
+    switch (action.type){
+        case 'FETCH_COMMUNITIES':
+            return { ...state, ..._.mapKeys(action.payload, '_id')  }
+        default:
+            return state
+    }
+}
+
+
 export default combineReducers({
     profile: profileReducer,
     auth: authReducer,
     tagList: tagReducer,
     theme: themeReducer,
+    communities: communitiesReducer,
     count: countReducer
 })
 

@@ -9,6 +9,8 @@ import {
     Entypo
   } from '@expo/vector-icons';
 
+import { didataBucket } from '../../data/config.json'
+
 import {
     Container,
     Title,
@@ -27,14 +29,17 @@ import {
     Bookmark,
 } from './styles';
 
-import { SelectedOptions } from '../../components/profile/SelectedOptions'
+import   SelectedOptions from '../../components/profile/SelectedOptions'
 
 const Profile = ({ navigation }) => {
 
-  const { name, imageURL, username } = useSelector(state => state.profile)
+  const { name, imageURL, username, bio, _id } = useSelector(state => state.profile)
+
+
 
     return(
         <Container>
+          
         <Header>
           {/* <AntDesign
             style={{ position: 'absolute', left: 10, top: 10 }}
@@ -59,7 +64,7 @@ const Profile = ({ navigation }) => {
         </Header>
         <ScrollView>
           <Content>
-            <Image style={styles.image} source={require('../../../assets/musk.jpg')} />
+            <Image style={styles.image} source={{ uri: didataBucket + imageURL }} />
             <Username>@{username}</Username>
             <Stats>
               <StatsColumn>
@@ -84,10 +89,10 @@ const Profile = ({ navigation }) => {
               {/* <Bookmark name="bookmark" size={24} color="black" /> */}
             </ProfileColumn>
             
-            <StatsText>Clique para adicionar uma bio</StatsText>
+            <StatsText>{bio}</StatsText>
             
           </Content>
-          <SelectedOptions publications myProfile />
+          <SelectedOptions userId={_id} publications myProfile />
         </ScrollView>
       </Container>
     )

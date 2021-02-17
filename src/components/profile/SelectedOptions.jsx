@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-
+import { connect } from 'react-redux'
+import * as actions from '../../actions'
 import { View, Text, TouchableOpacity } from 'react-native'
-
+   
+import { NavigationEvents } from 'react-navigation'
 import {
     Options,
     SelectedText
@@ -12,7 +14,7 @@ import Communities from './communities/Communities'
 import CommunityDetail from './communities/CommunityDetail'
 import {CreateNewCommunity} from '../Buttons'
 
-export class  SelectedOptions extends Component {
+ class SelectedOptions extends Component {
 
     state = { publications: true }
 
@@ -40,6 +42,7 @@ export class  SelectedOptions extends Component {
           } else {
             return(
               <>
+             <NavigationEvents onWillFocus={() => this.props.fetchCommunitiesByUserId(this.props.userId)} /> 
               <Options style={{ borderBottomWidth: 1,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0, 0, 0, 0.1)'}}>
                 <TouchableOpacity onPress={() => this.setState({publications: true})} style={{ padding: 12}}>
                   <Text>
@@ -53,7 +56,9 @@ export class  SelectedOptions extends Component {
                   </SelectedText>
                 </View>
                 </Options>
-                <Communities />
+                <Communities
+                  
+                />
                 {
                   this.props.myProfile
                   ? <CreateNewCommunity />
@@ -70,6 +75,16 @@ export class  SelectedOptions extends Component {
         return this.selectedOptions()
     }
 }
+
+function mapStateToProps(state){
+  return{
+    communities: Object.values(state.communities) 
+  }
+}
+
+
+export default connect(mapStateToProps, actions)(SelectedOptions)
+
 
 
 

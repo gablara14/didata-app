@@ -1,11 +1,6 @@
 import React, { useState } from 'react'
-import {  StyleSheet,  Image, ScrollView, Text, View, TouchableOpacity } from 'react-native'
-import {
-    MaterialCommunityIcons,
-    AntDesign,
-    FontAwesome,
-    MaterialIcons,
-  } from '@expo/vector-icons';
+import {  StyleSheet,  Image, ScrollView } from 'react-native'
+
 
 import {
     Container,
@@ -24,13 +19,12 @@ import {
     ProfileText,
     Bookmark,
     Options,
-   
     SelectedText
 } from './styles';
 
 
 
-import {SelectedOptions} from '../../../components/profile/SelectedOptions'
+import SelectedOptions from '../../../components/profile/SelectedOptions'
 
 import { thriverBucket } from '../../../data/config.json'
 
@@ -86,9 +80,9 @@ const AuthorScreen = ({ navigation }) => {
               </StatsColumn>
             </Stats>
             <ProfileColumn>
-              <ProfileEdit>
+              {/* <ProfileEdit>
                 <ProfileText>  Follow  </ProfileText>
-              </ProfileEdit>
+              </ProfileEdit> */}
                 {/* <MaterialIcons name="arrow-drop-down" size={24} color="black" /> */}
             </ProfileColumn>
   
@@ -96,7 +90,7 @@ const AuthorScreen = ({ navigation }) => {
           </Content>
 
           
-           <SelectedOptions publications={true} />
+           <SelectedOptions userId={id} publications={true} />
           
 
 

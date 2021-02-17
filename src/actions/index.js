@@ -125,6 +125,21 @@ export const fetchCommunitiesByUser= ({ id }) => async dispatch => {
 
 
 
+export const updateImage = (id,file) => async dispatch => {
+    const uploadConfig = await axios.get('/api/upload')
+    
+    await axiosApi.put(uploadConfig.data.url, file, {
+        headers: {
+            'Content-Type': file.type
+        }
+    })
+    const res = await axios.put(`/users/${id}`, {imageURL:uploadConfig.data.key})
+    await AsyncStorage.setItem('profile', JSON.stringify(res.data))
+    dispatch({ type: 'FETCH_PROFILE', payload: res.data })
+   
+
+}
+
 
 
 /////////////////////////////////////////
@@ -145,7 +160,10 @@ export const fetchCommunities= () => async dispatch => {
     dispatch({ type: 'FETCH_COMMUNITIES', payload: res.data })
 }
 
-
+export const fetchCommunitiesByUserId = (id) => async dispatch => {
+    const res = await axiosApi.get(`/users/${id}/communities`)
+    dispatch({ type: 'FETCH_COMMUNITIES', payload: res.data })
+}
 
 
 /////////////////////////////////////////

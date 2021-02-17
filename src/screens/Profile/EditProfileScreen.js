@@ -1,13 +1,15 @@
 import React, { useState, Component } from 'react'
-import { View, Text, SafeAreaView, ActivityIndicator } from 'react-native'
+import { View, Text, SafeAreaView, ActivityIndicator, Touchable, TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 import { Flex } from '../Explore/styles'
 import { Container } from './styles'
 import { connect } from 'react-redux'
 import { UpdateUserButton } from '../../components/Buttons'
 import * as actions from '../../actions'
+import ImagePicker from 'react-native-image-picker'
+import { didataBucket } from '../../data/config.json'
 
-const FakeImage = styled.View`
+const FakeImage = styled.Image`
     width: 82px;
     height: 82px;
     background: #C4C4C4;
@@ -63,7 +65,8 @@ class EditProfileScreen extends Component {
         nameValue: this.props.profile.name,
         usernameValue:  this.props.profile.username,
         bioValue: this.props.profile.bio,
-        loader: false
+        loader: false,
+        image: null
     }
 
 
@@ -76,6 +79,19 @@ class EditProfileScreen extends Component {
         }).then(() => this.setState({ loader: false }))
     }
 
+    handleChoosePhoto = () => {
+        const options = {
+            mediaType: 'photo',
+            includeBase64: false,
+            maxHeight: 200,
+            maxWidth: 200,
+        }
+        ImagePicker.launchImageLibrary(options, res => {
+            if (res.uri){
+                this.setState({ image: res })
+            }
+        })
+    }
     
 
     renderInput(label, initialValue, onChangeText){
@@ -85,19 +101,21 @@ class EditProfileScreen extends Component {
                 <Input
                     value={initialValue}
                     onChangeText={onChangeText}
-                    style={{ borderBottomWidth: 0.5,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0,0,0,0.6)' }}
+                    style={{ borderBottomWidth: 0.5, borderBottomColor: 'rgba(0,0,0,0.6)' }}
                 />
             </>
         )
     }
-
     render(){
         const { name, imageURL, username, bio, userId } = this.props.profile
         return (
             <Container style={{alignItems: 'center'}}>
-                <View style={{ padding: 40}}>
-                    <FakeImage />
-                    <View style={{ paddingVertical: 15 }}>
+                <View style={{ padding: 40, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <TouchableOpacity onPress={this.handleChoosePhoto}>
+                        <FakeImage source={{ uri: didataBucket + imageURL }} />
+                    </TouchableOpacity>
+                   
+                    <View style={{ paddingVertical: 15, alignItems: 'center' }}>
                         <Name>{name}</Name>
                         <Username>@{username}</Username>
                     </View>
