@@ -125,12 +125,12 @@ export const fetchCommunitiesByUser= ({ id }) => async dispatch => {
 
 
 
-export const updateImage = (id,file) => async dispatch => {
-    const uploadConfig = await axios.get('/api/upload')
+export const updateImage = (id,file, type) => async dispatch => {
+    const uploadConfig = await axiosApi.get(`/api/upload/${id}`)
     
     await axiosApi.put(uploadConfig.data.url, file, {
         headers: {
-            'Content-Type': file.type
+            'Content-Type': type
         }
     })
     const res = await axios.put(`/users/${id}`, {imageURL:uploadConfig.data.key})
@@ -147,8 +147,7 @@ export const updateImage = (id,file) => async dispatch => {
 ////////////////////////////////////////
 
 export const createCommunity = (data) => async dispatch => {
-    const { name, description, imageURL, userId, categories } = data
-    const res = await axiosApi.post('/communities', {name, description, imageURL, userId, categories})
+    const res = await axiosApi.post('/communities', data)
     dispatch({ type: 'FETCH_COMMUNITY', payload: res.data })
 }
 export const fetchCommunity = ({ id }) => async dispatch => {

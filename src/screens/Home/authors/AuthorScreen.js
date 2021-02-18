@@ -26,7 +26,7 @@ import {
 
 import SelectedOptions from '../../../components/profile/SelectedOptions'
 
-import { thriverBucket } from '../../../data/config.json'
+import { thriverBucket, didataBucket } from '../../../data/config.json'
 
 const AuthorScreen = ({ navigation }) => {
 
@@ -34,8 +34,9 @@ const AuthorScreen = ({ navigation }) => {
 
     const id = navigation.getParam('id')
     const name = navigation.getParam('name')
-    const image_url = navigation.getParam('image_url')
-
+    const imageURL = navigation.getParam('imageURL')
+    const bio  = navigation.getParam('bio')
+    const username  = navigation.getParam('username')
 
 
   
@@ -60,9 +61,9 @@ const AuthorScreen = ({ navigation }) => {
         </Header>
         <ScrollView>
           <Content>
-            <Image style={styles.image} source={{ uri: thriverBucket + image_url }} />
+            <Image style={styles.image} source={{ uri: didataBucket + imageURL }} />
             
-            <Username>{name}</Username>
+            <Username>{'@'+username}</Username>
             <Stats>
               <StatsColumn>
                 <StatsNumber>{ Math.floor(Math.random() * 1000) }</StatsNumber>
@@ -86,7 +87,7 @@ const AuthorScreen = ({ navigation }) => {
                 {/* <MaterialIcons name="arrow-drop-down" size={24} color="black" /> */}
             </ProfileColumn>
   
-            <StatsText>The best investor of all time</StatsText>
+            <StatsText>{bio}</StatsText>
           </Content>
 
           

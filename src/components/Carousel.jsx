@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Image, Text, StyleSheet, FlatList, TouchableOpacity, Dimensions, Touchable, TouchableOpacityBase } from 'react-native'
-import { thriverBucket } from '../data/config.json'
+import { thriverBucket, didataBucket } from '../data/config.json'
 import { DarkLayer, BackgroundImage } from './styles/styles'
 import { SeeAll, SeeOne } from './Buttons'
 import { navigate } from '../navigationRef'
@@ -159,10 +159,11 @@ export const TrendingAuthors = ({ data }) => {
             data={data}
             keyExtractor={data => data.id}
             renderItem={({ item }) => {
+                const { _id, name, imageURL, bio, username } = item
                 return (
-                    <TouchableOpacity style={styles.authorCardButtom} onPress={() => navigate('Author',  { id: item.id, name: item.name, image_url: item.image_url })}>
+                    <TouchableOpacity style={styles.authorCardButtom} onPress={() => navigate('Author',  { id: _id, name, imageURL, bio, username })}>
                         <View style={styles.authorCard}>
-                            <Image style={styles.authorImage} source={{ uri:  thriverBucket + item.image_url }} />
+                            <Image style={styles.authorImage} source={{ uri:  didataBucket + imageURL }} />
                                 
                             <View style={styles.authorInfo}>
                                 <Text style={styles.authorName}>{item.name}</Text>
@@ -240,15 +241,16 @@ export class HottestCommunities extends Component{
                 data={this.props.data}
                 keyExtractor={data => data.name}
                 renderItem={({ item }) => {
+                    const { name, imageURL, categories, description } = item
                     return (
-                        <TouchableOpacity                         onPress={() => navigate('Community', { id: item.id, name: item.name, image_url: item.image_url})} style={styles.newReleasesButton}>
+                        <TouchableOpacity onPress={() => navigate('Community', { id: item._id, name, imageURL, categories, description})} style={styles.newReleasesButton}>
                             <View style={styles.hottestCommunitiesCard} >
                                 {/* <Image style={styles.backgroundImage} source={{ uri:  thriverBucket + item.image_url }} /> */}
                                     
                                 <BackgroundImage >
                                     <Image
                                         style={styles.backgroundImage}
-                                        source={{ uri:  thriverBucket + item.image_url }}
+                                        source={{ uri:  didataBucket + imageURL }}
                                     />
                                     <DarkLayer />
                                 </BackgroundImage>
@@ -293,7 +295,7 @@ export const Hottest = ({ data }) => {
                             <BackgroundImage>
                                 <Image
                                     style={styles.backgroundImage}
-                                    source={{ uri:  thriverBucket + item.image_url }}
+                                    source={{ uri:  didataBucket + item.image_url }}
                                 />
                                 <DarkLayer />
                             </BackgroundImage>

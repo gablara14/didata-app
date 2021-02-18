@@ -1,8 +1,10 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native'
+import React, { Component } from 'react'
+import { View, Text, TouchableOpacity, Image, ActivityIndicator, FlatList } from 'react-native'
 import styled from 'styled-components/native';
 import { thriverBucket, communitiesData } from '../../../data/config.json'
 import { navigate } from '../../../navigationRef'
+import { connect } from 'react-redux'
+import * as actions from '../../../actions'
 
 export const FlexButton = styled.TouchableOpacity`
   width: 100%;
@@ -12,22 +14,40 @@ export const FlexButton = styled.TouchableOpacity`
   align-items: center;
 `
 import { useSelector } from 'react-redux'
+import { NavigationEvents } from 'react-navigation'
 
-export default function Communities() {
+class Communities extends Component {
 
-    const data = useSelector(state => Object.values(state.communities))
+    state = {
+        loading: true
+    }
+
+   componentDidMount(){
+        this.props.fetchCommunitiesByUserId(this.props.userId).then(() => {
+            this.setState({ loading: false })
+        })
+   }
     
-    return (
+    render(){
+        if (this.state.loading){
+            return <ActivityIndicator style={{marginTop: 20}} size="large" color="black"/> 
+        }
+        else if (!this.props.communities){
+            return <Text>The use does not has any community</Text>
+        }
+
+            return (
         <>        
-            {console.log(data)}
+             
             <FlatList
-                data={data}
+                data={this.props.communities}
                 keyExtractor={data => data._id}
                 renderItem={({ item }) => {
                     return(
                         <View  style={{display:'flex', flexDirection:'row',  borderBottomWidth: 1,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0, 0, 0, 0.1)'}}>
                             <FlexButton 
-                                onPress={() => navigate('Community', { id: item.id, name: item.name, image_url: item.imageURL})}
+                                onPress={() => navigate('Community',{ id: item.id, name: item.name, image_url: item.imageURL, description: item.description,
+                                categories: item.categories})}
                             >
                                 <Image source={{uri: item.imageURL  }} style={{backgroundColor:"#C4C4C4", height: 75, width: 75, borderRadius: 4}} />
                                 <View style={{marginLeft: 15}}>
@@ -48,11 +68,20 @@ export default function Communities() {
                 }}
             />
 
-            
-
         </>
     )
+    }
+
 }
+
+function mapStateToProps(state){
+    return{
+        profile: state.profile,
+        communities: Object.values(state.communities)
+    }
+}
+
+export default connect(mapStateToProps, actions)(Communities) 
 
 // <View  style={{display:'flex', flexDirection:'row',  borderBottomWidth: 1,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0, 0, 0, 0.1)'}}>
 // <FlexButton>

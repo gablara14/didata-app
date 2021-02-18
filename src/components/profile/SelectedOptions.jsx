@@ -42,7 +42,7 @@ import {CreateNewCommunity} from '../Buttons'
           } else {
             return(
               <>
-             <NavigationEvents onWillFocus={() => this.props.fetchCommunitiesByUserId(this.props.userId)} /> 
+            
               <Options style={{ borderBottomWidth: 1,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0, 0, 0, 0.1)'}}>
                 <TouchableOpacity onPress={() => this.setState({publications: true})} style={{ padding: 12}}>
                   <Text>
@@ -57,7 +57,7 @@ import {CreateNewCommunity} from '../Buttons'
                 </View>
                 </Options>
                 <Communities
-                  
+                  userId={this.props.userId}
                 />
                 {
                   this.props.myProfile

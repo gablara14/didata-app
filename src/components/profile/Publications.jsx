@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity, Touchable } from 'react-native'
 import styled from 'styled-components/native';
 import { navigate } from '../../navigationRef'
 import CommunityPost from '../../screens/ContentScreens/components/CommunityPost'
+import CreatePublication from './CreatePublication'
+
 export const FlexView = styled.View`
   width: 100%;
   display: flex
@@ -34,6 +36,7 @@ export default function Publications() {
           <Text style={{ fontSize: 16, fontWeight: 'bold'}}>63 PUBLICATIONS</Text>
         </View>
         <View>
+          <CreatePublication />
           < CommunityPost />
           < CommunityPost />
           < CommunityPost />

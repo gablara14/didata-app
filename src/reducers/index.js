@@ -70,7 +70,18 @@ function communitiesReducer(state = {}, action){
 }
 
 
+function usersReducer(state = {}, action){
+    switch (action.type){
+        case 'FETCH_USERS':
+            return { ...state, ..._.mapKeys(action.payload, '_id')  }
+        default:
+            return state
+    }
+}
+
+
 export default combineReducers({
+    users: usersReducer,
     profile: profileReducer,
     auth: authReducer,
     tagList: tagReducer,

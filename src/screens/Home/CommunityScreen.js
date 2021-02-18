@@ -75,6 +75,8 @@ const CommunityScreen = ({ navigation }) => {
     const id = navigation.getParam('id')
     const name = navigation.getParam('name')
     const image_url = navigation.getParam('image_url')
+    const description = navigation.getParam('description')
+    const categories = navigation.getParam('categories')
 
     const renderButton = () => {
         if (inside){
@@ -107,8 +109,12 @@ const CommunityScreen = ({ navigation }) => {
 
                         <View>
                             <Subtitle>
-                                Nessa comunidade você irá aprender a desenvolver técnicas de quant operando ao vivo comigo.
-                                Todos os dias irei gravar estratégicas que podem ser usadas para alavancar nosso negócio!
+                                {categories ? categories.map(cat => {
+                                    return '#' + cat + ' '
+                                }) : '' }
+                            </Subtitle>
+                            <Subtitle>
+                                {description}
                             </Subtitle>
                         </View>
                         

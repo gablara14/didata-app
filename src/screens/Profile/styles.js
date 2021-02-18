@@ -122,7 +122,9 @@ export const FormContainer = styled.View`
 
 export const FormTitle = styled.Text`
     font-size: 18px;
-    margin-bottom: 15px
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 10px
     
 `
 
