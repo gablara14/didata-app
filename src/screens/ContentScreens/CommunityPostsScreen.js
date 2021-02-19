@@ -1,8 +1,7 @@
 import React from 'react'
 import { View, Text, SafeAreaView, ScrollView } from 'react-native'
-import CommunityPost from './components/CommunityPost'
+import CommunityImagePost from './components/CommunityImagePost'
 import styled from 'styled-components/native'
-
 
 const FakeImage = styled.View`
     width: 37px;
@@ -63,9 +62,9 @@ const CommunityPostsScreen = () => {
             </FlexView>
 
             <ScrollView>
-                <CommunityPost />
-                <CommunityPost />
-                <CommunityPost />
+                <CommunityImagePost />
+                <CommunityImagePost />
+                <CommunityImagePost />
             </ScrollView>
 
             

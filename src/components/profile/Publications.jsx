@@ -2,7 +2,8 @@ import React from 'react'
 import { View, Text, TouchableOpacity, Touchable, FlatList } from 'react-native'
 import styled from 'styled-components/native';
 import { navigate } from '../../navigationRef'
-import CommunityPost from '../../screens/ContentScreens/components/CommunityPost'
+import CommunityImagePost from '../../screens/ContentScreens/components/CommunityImagePost'
+import CommunityTextPost from '../../screens/ContentScreens/components/CommunityTextPost'
 import CreatePublication from './CreatePublication'
 
 export const FlexView = styled.View`
@@ -37,11 +38,12 @@ export default function Publications() {
         </View>
         <View>
           <CreatePublication />
-          < CommunityPost />
-          < CommunityPost />
-          < CommunityPost />
-          < CommunityPost />
-          < CommunityPost />
+          <CommunityTextPost />
+          < CommunityImagePost />
+          < CommunityImagePost />
+          < CommunityImagePost />
+          < CommunityImagePost />
+          < CommunityImagePost />
 {/* 
           <FlatList
             data={}

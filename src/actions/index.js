@@ -162,17 +162,17 @@ export const fetchCommunitiesByUserId = (id) => async dispatch => {
 
 
 /////////////////////////////////////////
-///////// POST ACTIONS /////////////
+///////// PUBLICATIONS ACTIONS /////////////
 ////////////////////////////////////////
 
 
-export const createPost = (data) => async dispatch => {
+export const createPublication = (data) => async dispatch => {
     const { 
         type,
         userId,
         communityId,
-        content
+        body
      } = data
-    const res = await axiosApi.post('/posts', { type, userId, communityId, content })
+    const res = await axiosApi.post('/publications', { type, userId, communityId, body })
     dispatch({ type: 'FETCH_POST', payload: res.data })
 }

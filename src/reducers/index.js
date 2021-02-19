@@ -84,6 +84,15 @@ function usersReducer(state = {}, action){
     }
 }
 
+// function homeReducer(state = {}, action){
+//     switch (action.type){
+//         case 'FETCH_HOME_COMMUNITIES':
+//             return { ..._.mapKeys(action.payload, '_id')  }
+//         default:
+//             return state
+//     }
+// }
+
 
 export default combineReducers({
     users: usersReducer,

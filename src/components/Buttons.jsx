@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TouchableOpacity, StyleSheet, Text } from 'react-native'
+import { TouchableOpacity, StyleSheet, Text, ActivityIndicator } from 'react-native'
 import { navigate } from '../navigationRef'
 
 
@@ -57,10 +57,16 @@ export const CreateNewCommunity = () => {
     )
 }
 
-export const ConfirmCreateNewCommunity = ({ onSubmit }) => {
+export const ConfirmCreateNewCommunity = ({ onSubmit, loading }) => {
     return(
         <TouchableOpacity onPress={onSubmit}  style={styles.createCommunityButton} >
-           <Text style={styles.text}>Create!</Text> 
+           <Text style={styles.text}>
+               {
+                   loading
+                   ? <ActivityIndicator size="small" color="white"/>
+                   : 'Create!'
+               }
+            </Text> 
         </TouchableOpacity>
     )
 }
