@@ -158,7 +158,7 @@ class EditProfileScreen extends Component {
 
 function MapStateToProps (state) {
     return{
-        profile: state.profile
+        profile: state.auth.profile
     }
 }
 

@@ -36,8 +36,8 @@ function tagReducer(state = {}, action){
 
 function profileReducer(state = null, action){
     switch (action.type){
-        case 'FETCH_PROFILE':
-            return action.payload || false
+        // case 'FETCH_PROFILE':
+        //     return action.payload || false
         default:
             return state
     }
@@ -51,8 +51,11 @@ function authReducer(state =  { token: null, errorMessage: '' }, action){
             return {...state, errorMessage: action.payload }
         case 'SIGN_IN':
             return { errorMessage: '', token: action.payload }
+        case 'FETCH_PROFILE':
+            return { ...state, profile: action.payload }
         case 'CLEAR_ERROR_MESSAGE':
             return { ...state, errorMessage: ''}
+
         case 'SIGN_OUT':
             return { token: null, errorMessage: '' }
         default:
@@ -62,8 +65,10 @@ function authReducer(state =  { token: null, errorMessage: '' }, action){
 
 function communitiesReducer(state = {}, action){
     switch (action.type){
+        case 'FETCH_COMMUNITY':
+            return { ...state,  [action.payload.id]: action.payload}
         case 'FETCH_COMMUNITIES':
-            return { ...state, ..._.mapKeys(action.payload, '_id')  }
+            return { ..._.mapKeys(action.payload, '_id')  }
         default:
             return state
     }
@@ -82,7 +87,6 @@ function usersReducer(state = {}, action){
 
 export default combineReducers({
     users: usersReducer,
-    profile: profileReducer,
     auth: authReducer,
     tagList: tagReducer,
     theme: themeReducer,

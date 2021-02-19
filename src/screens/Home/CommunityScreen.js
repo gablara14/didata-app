@@ -74,7 +74,7 @@ const CommunityScreen = ({ navigation }) => {
 
     const id = navigation.getParam('id')
     const name = navigation.getParam('name')
-    const image_url = navigation.getParam('image_url')
+    const imageURL = navigation.getParam('imageURL')
     const description = navigation.getParam('description')
     const categories = navigation.getParam('categories')
 
@@ -99,7 +99,7 @@ const CommunityScreen = ({ navigation }) => {
         <View style={{ backgroundColor: 'white', height: '100%', width: '100%'}}>
             <ScrollView>
                 <BackgroundImage
-                    source={{ uri: thriverBucket + image_url }}
+                    source={{ uri: thriverBucket + imageURL }}
                 />
                 <DarkLayer />
                 <MainContainer>

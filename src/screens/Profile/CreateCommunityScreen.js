@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
 function MapStateToProps(state){
     return{
         tagList: Object.values(state.tagList),
-        profile: state.profile
+        profile: state.auth.profile
     }
 }
 

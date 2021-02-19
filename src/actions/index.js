@@ -118,10 +118,6 @@ export const fetchUsers= () => async dispatch => {
     dispatch({ type: 'FETCH_USERS', payload: res.data })
 }
 
-export const fetchCommunitiesByUser= ({ id }) => async dispatch => {
-    const res = await axiosApi.get(`/users/${id}/communities`)
-    dispatch({ type: 'FETCH_USERS', payload: res.data })
-}
 
 
 

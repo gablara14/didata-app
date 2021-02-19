@@ -33,7 +33,7 @@ import   SelectedOptions from '../../components/profile/SelectedOptions'
 
 const Profile = ({ navigation }) => {
 
-  const { name, imageURL, username, bio, _id } = useSelector(state => state.profile)
+  const { name, imageURL, username, bio, _id } = useSelector(state => state.auth.profile)
 
 
 

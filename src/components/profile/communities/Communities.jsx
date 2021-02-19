@@ -5,6 +5,7 @@ import { thriverBucket, communitiesData } from '../../../data/config.json'
 import { navigate } from '../../../navigationRef'
 import { connect } from 'react-redux'
 import * as actions from '../../../actions'
+import EmptyCommunityList from '../../EmptyList'
 
 export const FlexButton = styled.TouchableOpacity`
   width: 100%;
@@ -32,8 +33,8 @@ class Communities extends Component {
         if (this.state.loading){
             return <ActivityIndicator style={{marginTop: 20}} size="large" color="black"/> 
         }
-        else if (!this.props.communities){
-            return <Text>The use does not has any community</Text>
+        else if (!this.props.communities.length){
+            return <EmptyCommunityList/>
         }
 
             return (
@@ -55,7 +56,7 @@ class Communities extends Component {
                                         {item.name}
                                     </Text>
                                     <Text style={{ fontSize: 11}}>
-                                        Public community - 313112 members
+                                        {item.closedCommunity ? 'Closed' : 'Public'} community - 0 members
                                     </Text>
                                 </View>
             

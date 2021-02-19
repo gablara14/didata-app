@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Touchable } from 'react-native'
+import { View, Text, TouchableOpacity, Touchable, FlatList } from 'react-native'
 import styled from 'styled-components/native';
 import { navigate } from '../../navigationRef'
 import CommunityPost from '../../screens/ContentScreens/components/CommunityPost'
@@ -42,6 +42,19 @@ export default function Publications() {
           < CommunityPost />
           < CommunityPost />
           < CommunityPost />
+{/* 
+          <FlatList
+            data={}
+            keyExtractor={data => data.id}
+            renderItem={({ item }) => {
+              if (item.type === 'image'){
+                return  < CommunityPost />
+              } else {
+                return // TextPost
+              }
+            }}
+          /> */}
+
         </View>
       </View>      
     )
