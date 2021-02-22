@@ -2,6 +2,7 @@
 import { navigate } from '../navigationRef'
 import axiosApi from '../api/axiosConfig'
 import { AsyncStorage } from 'react-native'
+import axios from 'axios'
 // const signup = (dispatch) => async ({ email, password }) => {
 //     try {
 //         const response = await trackerApi.post('/signup', { email, password })
@@ -182,3 +183,24 @@ export const fetchPublicationsByUserId = (id) => async dispatch => {
     const res = await axiosApi.get(`/users/${id}/publications`)
     dispatch({ type: 'FETCH_PUBLICATIONS', payload: res.data })
 }
+
+
+
+
+///////////////////////////////////////////////////////
+////////////// USER & COMMUNITY ACTIONS ///////////////
+///////////////////////////////////////////////////////
+
+
+
+export const followCommunity = (data) => async dispatch => {
+    const res = await axiosApi.post(`/follow`, data)
+    dispatch({ type: 'FOLLOW_COMMUNITY', payload: res.data})
+}
+
+export const unfollowCommunity = (data) => async dispatch => {
+    const res = await axiosApi.post(`/unfollow`, data)
+    dispatch({ type: 'UNFOLLOW_COMMUNITY', payload: res.data})
+}
+
+/// /users/:id/community/:id

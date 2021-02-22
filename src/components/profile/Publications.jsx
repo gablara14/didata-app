@@ -73,12 +73,11 @@ componentDidMount(){
           keyExtractor={data => data._id}
           renderItem={({ item }) => {
               if (item.type === 'image') return < CommunityImagePost data={item} />
-              else {
-                if (item.userId === this.props.userId){
-                  return <CommunityTextPost data={item}/>
-                }
-                return 
-              } 
+              if (item.userId === this.props.userId){
+                return <CommunityTextPost data={item}/>
+              }
+              return 
+              
           }}
         />
 
