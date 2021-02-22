@@ -24,6 +24,7 @@ class Publications extends Component {
 componentDidMount(){
     this.props.fetchPublicationsByUserId(this.props.userId).then(() => {
         this.setState({ loading: false })
+        console.log(this.props.publications)
     })
 }
 
@@ -72,7 +73,12 @@ componentDidMount(){
           keyExtractor={data => data._id}
           renderItem={({ item }) => {
               if (item.type === 'image') return < CommunityImagePost data={item} />
-              else return <CommunityTextPost data={item}/>
+              else {
+                if (item.userId === this.props.userId){
+                  return <CommunityTextPost data={item}/>
+                }
+                return 
+              } 
           }}
         />
 
@@ -104,11 +110,10 @@ componentDidMount(){
   }
 
 }
-
 function mapStateToProps(state){
   return {
     profile: state.auth.profile,
-    publications: Object.values(state.publications)
+    publications: Object.values(state.publications) 
   }
 }
 

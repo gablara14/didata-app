@@ -68,7 +68,7 @@ function communitiesReducer(state = {}, action){
         case 'FETCH_COMMUNITY':
             return { ...state,  [action.payload.id]: action.payload}
         case 'FETCH_COMMUNITIES':
-            return { ..._.mapKeys(action.payload, '_id')  }
+            return { ...state,  ..._.mapKeys(action.payload, '_id')  }
         default:
             return state
     }
@@ -79,7 +79,7 @@ function publicationsReducer(state = {}, action){
         case 'FETCH_PUBLICATION':
             return { ...state,  [action.payload.id]: action.payload}
         case 'FETCH_PUBLICATIONS':
-            return { ..._.mapKeys(action.payload, '_id')  }
+            return { ...state,  ..._.mapKeys(action.payload, '_id') }
         default:
             return state
     }

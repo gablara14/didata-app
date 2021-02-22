@@ -37,13 +37,16 @@ class Communities extends Component {
             return <EmptyCommunityList/>
         }
 
-            return (
+        return (
         <>        
              
             <FlatList
                 data={this.props.communities}
                 keyExtractor={data => data._id}
                 renderItem={({ item }) => {
+                    if (this.props.userId !== item.userId) {
+                        return <View style={{width: 10, height: 0.1}} ></View>
+                    }
                     return(
                         <View  style={{display:'flex', flexDirection:'row',  borderBottomWidth: 1,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0, 0, 0, 0.1)'}}>
                             <FlexButton 
