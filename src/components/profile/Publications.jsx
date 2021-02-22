@@ -1,10 +1,13 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, Touchable, FlatList } from 'react-native'
+import React, { Component } from 'react'
+import { View, Text, TouchableOpacity, Touchable, FlatList, ActivityIndicator } from 'react-native'
 import styled from 'styled-components/native';
 import { navigate } from '../../navigationRef'
 import CommunityImagePost from '../../screens/ContentScreens/components/CommunityImagePost'
 import CommunityTextPost from '../../screens/ContentScreens/components/CommunityTextPost'
 import CreatePublication from './CreatePublication'
+import { connect } from 'react-redux'
+import * as actions from '../../actions'
+import _ from 'lodash'
 
 export const FlexView = styled.View`
   width: 100%;
@@ -12,8 +15,28 @@ export const FlexView = styled.View`
   flex-direction: row;
 `
 
-export default function Publications() {
-    return (
+class Publications extends Component {
+
+  state = {
+    loading: true
+  }
+
+componentDidMount(){
+    this.props.fetchPublicationsByUserId(this.props.userId).then(() => {
+        this.setState({ loading: false })
+    })
+}
+
+
+
+  render(){
+        if (this.state.loading){
+          return <ActivityIndicator style={{marginTop: 20}} size="large" color="black"/> 
+        }
+        if (!this.props.publications.length){
+          return <View />
+        }
+        return (
         <View>
         {/* <FlexView>
           
@@ -37,13 +60,31 @@ export default function Publications() {
           <Text style={{ fontSize: 16, fontWeight: 'bold'}}>63 PUBLICATIONS</Text>
         </View>
         <View>
-          <CreatePublication />
+          {
+            this.props.userId === this.props.profile._id 
+            ? <CreatePublication />
+            : <View />
+          }
+          
+
+        <FlatList
+          data={_.reverse(this.props.publications)}
+          keyExtractor={data => data._id}
+          renderItem={({ item }) => {
+              if (item.type === 'image') return < CommunityImagePost data={item} />
+              else return <CommunityTextPost data={item}/>
+          }}
+        />
+
+
+
+{/* 
           <CommunityTextPost />
           < CommunityImagePost />
           < CommunityImagePost />
           < CommunityImagePost />
           < CommunityImagePost />
-          < CommunityImagePost />
+          < CommunityImagePost /> */}
 {/* 
           <FlatList
             data={}
@@ -60,4 +101,16 @@ export default function Publications() {
         </View>
       </View>      
     )
+  }
+
 }
+
+function mapStateToProps(state){
+  return {
+    profile: state.auth.profile,
+    publications: Object.values(state.publications)
+  }
+}
+
+
+export default connect(mapStateToProps, actions)(Publications)

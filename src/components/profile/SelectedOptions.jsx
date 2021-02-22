@@ -24,7 +24,7 @@ import {CreateNewCommunity} from '../Buttons'
               <>
               <Options style={{ borderBottomWidth: 1,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0, 0, 0, 0.1)'}}>
                 <View  style={{ borderBottomWidth: 2,  borderBottomStyle: 'solid', borderBottomColor: 'black' , padding: 12}}>
-                  <SelectedText >
+                  <SelectedText>
                     Publications
                   </SelectedText>
                 </View>
@@ -36,7 +36,9 @@ import {CreateNewCommunity} from '../Buttons'
                 </TouchableOpacity>
               </Options>
               
-              <Publications/>
+              <Publications
+                userId={this.props.userId}
+              />
             </>
             ) 
           } else {

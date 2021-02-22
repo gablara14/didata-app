@@ -74,6 +74,17 @@ function communitiesReducer(state = {}, action){
     }
 }
 
+function publicationsReducer(state = {}, action){
+    switch (action.type){
+        case 'FETCH_PUBLICATION':
+            return { ...state,  [action.payload.id]: action.payload}
+        case 'FETCH_PUBLICATIONS':
+            return { ..._.mapKeys(action.payload, '_id')  }
+        default:
+            return state
+    }
+}
+
 
 function usersReducer(state = {}, action){
     switch (action.type){
@@ -100,6 +111,7 @@ export default combineReducers({
     tagList: tagReducer,
     theme: themeReducer,
     communities: communitiesReducer,
+    publications: publicationsReducer,
     count: countReducer
 })
 
