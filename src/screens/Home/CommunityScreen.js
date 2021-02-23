@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
+import { Text, View, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native'
 import styled from 'styled-components/native'
 import { thriverBucket } from '../../data/config.json'
 import { SelectedCommunityOptions } from '../../components/profile/SelectedOptions'
@@ -67,40 +67,52 @@ const DarkLayer = styled.View`
 class CommunityScreen extends Component {
 
     // const [ inside, setInside ] = useState(false)
-    state = { inside: false}
+    state = { loader: false}
 
 
     onSubmit = (follow, communityId) => {
-        console.log(communityId)
+        this.setState({loader: true})
         if (follow){
             this.props.followCommunity({
                 userId: this.props.profile._id ,
                 communityId: communityId
             }).then(() => {
-                this.setState({ inside: true })
+                this.setState({ loader: false })
             })
         } else {
             this.props.unfollowCommunity({
                 userId: this.props.profile._id ,
                 communityId: communityId
             }).then(() => {
-                this.setState({ inside: false })
+                this.setState({ loader: false })
             })
         }
     }
 
+    renderButtonText(text, color) {
+        if (this.state.loader) return <ActivityIndicator size="small" color={color}/> 
+        else return text
+    }
+
 
     renderButton(communityId) {
-        if (this.state.inside){
+        const followingList = this.props.followingList.map(({communityId}) => communityId)
+        const isUserInside =  followingList.includes(communityId)
+      
+        if (isUserInside){
             return(
                 <JoinedButton onPress={() => this.onSubmit(false, communityId)} >
-                    <ButtonJoinedText>Joined</ButtonJoinedText>
+                    <ButtonJoinedText>
+                        {this.renderButtonText('Joined', 'black')}
+                    </ButtonJoinedText>
                 </JoinedButton>
             )
         } else {
             return(
                 <JoinButton onPress={() => this.onSubmit(true, communityId)}>
-                    <ButtonText>Join Now</ButtonText>
+                    <ButtonText>
+                        {this.renderButtonText('Join Now', 'white')}
+                    </ButtonText>
                 </JoinButton>
             )
         }
@@ -143,6 +155,7 @@ class CommunityScreen extends Component {
 function mapStateToProps(state){
     return {
         profile: state.auth.profile,
+        followingList: Object.values(state.followingList)
     }
 }
 

@@ -36,10 +36,12 @@ export const tryLocalSignin = () => async dispatch=> {
     try {
         const token = await AsyncStorage.getItem('token')
         const profile = await AsyncStorage.getItem('profile')
-
+        const followingList = await axiosApi.get(`/follow/${(JSON.parse(profile))._id}`)
+        console.log('REEEEEEEEEEEEEESPONSEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', followingList.data)
         if (token) {
             dispatch({ type: 'SIGN_IN', payload: token})
             dispatch({ type: 'FETCH_PROFILE', payload: JSON.parse(profile)}) 
+            dispatch({ type: 'FETCH_FOLLOWING', payload: followingList.data })
             navigate('Home')
         } else {
            navigate('RegisterOrLogin')
@@ -48,15 +50,14 @@ export const tryLocalSignin = () => async dispatch=> {
         console.log(err)
     }
 }
- 
-
 
 export const signIn =  ({ email, password }) => async dispatch =>  {
     try {
         const res = await axiosApi.post('/signin', { email, password })
         await AsyncStorage.setItem('token', res.data.token)
         await AsyncStorage.setItem('profile', JSON.stringify(res.data.profile))
-        JSON.stringify
+
+        dispatch({ type: 'FETCH_FOLLOWING', payload: res.data.followingList})
         dispatch({ type: 'SIGN_IN', payload: res.data.token})
         dispatch({ type: 'FETCH_PROFILE', payload: res.data.profile}) 
         navigate('Home')
@@ -67,9 +68,6 @@ export const signIn =  ({ email, password }) => async dispatch =>  {
         })
     }
 }
-
-
-
 
 export const signUp = ({ email, password, username, name  }) => async dispatch => {
     try {

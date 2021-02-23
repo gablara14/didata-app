@@ -50,7 +50,7 @@ class Communities extends Component {
                     return(
                         <View  style={{display:'flex', flexDirection:'row',  borderBottomWidth: 1,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0, 0, 0, 0.1)'}}>
                             <FlexButton 
-                                onPress={() => navigate('Community',{ id: item.id, name: item.name, image_url: item.imageURL, description: item.description,
+                                onPress={() => navigate('Community',{ id: item._id, name: item.name, image_url: item.imageURL, description: item.description,
                                 categories: item.categories})}
                             >
                                 <Image source={{uri: item.imageURL  }} style={{backgroundColor:"#C4C4C4", height: 75, width: 75, borderRadius: 4}} />

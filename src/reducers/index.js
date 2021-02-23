@@ -10,12 +10,23 @@ function countReducer(state = null, action){
     }
 }
 
-
 function themeReducer(state = true, action){
     switch (action.type) {
         case 'CHANGE_THEME':
             return action.payload || false
-        
+        default:
+            return state
+    }
+}
+
+function followingCommunityListReducer(state = {}, action){
+    switch (action.type) {
+        case 'FOLLOW_COMMUNITY':
+            return { ...state, [action.payload.communityId]: action.payload}
+        case 'UNFOLLOW_COMMUNITY':
+            return _.omit(state, action.payload.communityId)
+        case 'FETCH_FOLLOWING':
+            return { ...state,  ..._.mapKeys(action.payload, 'communityId')  }
         default:
             return state
     }
@@ -66,7 +77,7 @@ function authReducer(state =  { token: null, errorMessage: '' }, action){
 function communitiesReducer(state = {}, action){
     switch (action.type){
         case 'FETCH_COMMUNITY':
-            return { ...state,  [action.payload.id]: action.payload}
+            return { ...state,  [action.payload._id]: action.payload}
         case 'FETCH_COMMUNITIES':
             return { ...state,  ..._.mapKeys(action.payload, '_id')  }
         default:
@@ -106,6 +117,7 @@ function usersReducer(state = {}, action){
 
 
 export default combineReducers({
+    followingList: followingCommunityListReducer,
     users: usersReducer,
     auth: authReducer,
     tagList: tagReducer,
