@@ -44,14 +44,16 @@ class Communities extends Component {
                 data={this.props.communities}
                 keyExtractor={data => data._id}
                 renderItem={({ item }) => {
+                    
                     if (this.props.userId !== item.userId) {
                         return <View style={{width: 10, height: 0.1}} ></View>
                     }
+                    const {name, imageURL, description, categories, members} = item
                     return(
                         <View  style={{display:'flex', flexDirection:'row',  borderBottomWidth: 1,  borderBottomStyle: 'solid', borderBottomColor: 'rgba(0, 0, 0, 0.1)'}}>
                             <FlexButton 
-                                onPress={() => navigate('Community',{ id: item._id, name: item.name, image_url: item.imageURL, description: item.description,
-                                categories: item.categories})}
+                                onPress={() => navigate('Community',{ id: item._id, name, imageURL, description,
+                                categories, members})}
                             >
                                 <Image source={{uri: item.imageURL  }} style={{backgroundColor:"#C4C4C4", height: 75, width: 75, borderRadius: 4}} />
                                 <View style={{marginLeft: 15}}>
@@ -59,7 +61,7 @@ class Communities extends Component {
                                         {item.name}
                                     </Text>
                                     <Text style={{ fontSize: 11}}>
-                                        {item.closedCommunity ? 'Closed' : 'Public'} community - 0 members
+                                        {item.closedCommunity ? 'Closed' : 'Public'} community - {members} members
                                     </Text>
                                 </View>
             

@@ -67,7 +67,7 @@ const DarkLayer = styled.View`
 class CommunityScreen extends Component {
 
     // const [ inside, setInside ] = useState(false)
-    state = { loader: false}
+    state = { loader: false, members: this.props.navigation.getParam('members')}
 
 
     onSubmit = (follow, communityId) => {
@@ -78,6 +78,7 @@ class CommunityScreen extends Component {
                 communityId: communityId
             }).then(() => {
                 this.setState({ loader: false })
+                this.setState({ members: this.state.members + 1})
             })
         } else {
             this.props.unfollowCommunity({
@@ -85,6 +86,7 @@ class CommunityScreen extends Component {
                 communityId: communityId
             }).then(() => {
                 this.setState({ loader: false })
+                this.setState({ members: this.state.members - 1})
             })
         }
     }
@@ -124,6 +126,8 @@ class CommunityScreen extends Component {
         const imageURL = this.props.navigation.getParam('imageURL')
         const description = this.props.navigation.getParam('description')
         const categories = this.props.navigation.getParam('categories')
+
+        // const members = this.props.navigation.getParam('members')
         return (
             <View style={{ backgroundColor: 'white', height: '100%', width: '100%'}}>
                 <ScrollView>
@@ -132,7 +136,7 @@ class CommunityScreen extends Component {
                     <MainContainer>
                         <View>
                             <Title>{name}</Title>
-                            <Subtitle>Public Community - 190 members</Subtitle>
+                            <Subtitle>Public Community - {this.state.members} members</Subtitle>
                             <View>
                                 <Subtitle>
                                     {categories ? categories.map(cat => {

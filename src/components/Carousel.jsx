@@ -241,9 +241,9 @@ export class HottestCommunities extends Component{
                 data={this.props.data}
                 keyExtractor={data => data.name}
                 renderItem={({ item }) => {
-                    const { name, imageURL, categories, description } = item
+                    const { name, imageURL, categories, description, members } = item
                     return (
-                        <TouchableOpacity onPress={() => navigate('Community', { id: item._id, name, imageURL, categories, description})} style={styles.newReleasesButton}>
+                        <TouchableOpacity onPress={() => navigate('Community', { id: item._id, name, imageURL, categories, description, members})} style={styles.newReleasesButton}>
                             <View style={styles.hottestCommunitiesCard} >
                                 {/* <Image style={styles.backgroundImage} source={{ uri:  thriverBucket + item.image_url }} /> */}
                                     

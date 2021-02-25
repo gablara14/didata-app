@@ -10,7 +10,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { didataBucket } from '../../data/config.json'
 // import fs from 'react-native-fs'
 import Base64Binary from 'base64-arraybuffer'
-import * as FileSystem from 'expo-file-system'
+// import * as FileSystem from 'expo-file-system'
 
 const FakeImage = styled.Image`
     width: 82px;
@@ -88,18 +88,19 @@ class EditProfileScreen extends Component {
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
             aspect: [4,3],
-            quality: 1
+            quality: 1,
+            base64: true
         })
-        console.log(result);
-
+        
         if (!result.cancelled) {
 
             this.setState({ image: result.uri });
             //   const base64 = await fs.readFile(result.uri, 'base64')
-            //   const arrayBuffer = Base64Binary.decode(base64)
-            const encodedFile = FileSystem.readAsStringAsync(result.uri, FileSystem.EncodingType.Base64)
-            const arrayBuffer = Base64Binary.decode(encodedFile)
-            this.props.updateImage(this.props.profile._id, arrayBuffer, result.type)
+            //   
+            
+            const URI = 'data:image/jpeg;base64,' + result.base64
+            const arrayBuffer = Base64Binary.decode(result.base64)
+            this.props.updateImage(this.props.profile._id, arrayBuffer)
         }
     }
     
