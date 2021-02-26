@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native'
+import { Text, View, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator  } from 'react-native'
 import styled from 'styled-components/native'
 import { didataBucket } from '../../data/config.json'
 import { SelectedCommunityOptions } from '../../components/profile/SelectedOptions'
@@ -97,10 +97,15 @@ class CommunityScreen extends Component {
     }
 
 
-    renderButton(communityId) {
+    renderButton(communityId, userId) {
         const followingList = this.props.followingList.map(({communityId}) => communityId)
         const isUserInside =  followingList.includes(communityId)
-      
+        
+        if (this.props.profile._id === userId){
+            return <TouchableOpacity><Text>Edit</Text></TouchableOpacity>
+        }
+
+
         if (isUserInside){
             return(
                 <JoinedButton onPress={() => this.onSubmit(false, communityId)} >
@@ -126,7 +131,7 @@ class CommunityScreen extends Component {
         const imageURL = this.props.navigation.getParam('imageURL')
         const description = this.props.navigation.getParam('description')
         const categories = this.props.navigation.getParam('categories')
-
+        const userId = this.props.navigation.getParam('userId')
         // const members = this.props.navigation.getParam('members')
         return (
             <View style={{ backgroundColor: 'white', height: '100%', width: '100%'}}>
@@ -146,7 +151,10 @@ class CommunityScreen extends Component {
                                 <Subtitle>{description}</Subtitle>
                             </View>
                         </View>
-                        {this.renderButton(id)}
+                        <View style={{alignItems: 'center', justifyContent:'center'}}>
+                            {this.renderButton(id, userId)}
+                        </View>
+
                     </MainContainer>
                     <SelectedCommunityOptions about />
                 </ScrollView>

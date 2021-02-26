@@ -25,6 +25,12 @@ background-color: #C4C4C4;
 border-radius: 50px
 `
 
+export const UserImage = styled.Image`
+width: 45px;
+height: 45px;
+border-radius: 50px
+`
+
 
 
 

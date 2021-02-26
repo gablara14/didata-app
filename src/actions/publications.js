@@ -7,7 +7,8 @@ import axiosApi from '../api/axiosConfig'
 
 
 export const createPublication = (data) => async dispatch => {
-    const { 
+    const {
+        
         type,
         userId,
         communityId,
@@ -19,7 +20,8 @@ export const createPublication = (data) => async dispatch => {
 
 
 export const createImagePublication = (data) => async dispatch => {
-    const { 
+    const {
+        
         type,
         userId,
         communityId,

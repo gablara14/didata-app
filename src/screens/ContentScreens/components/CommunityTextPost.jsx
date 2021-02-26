@@ -16,17 +16,22 @@ import {
     IconAndInfo,
     PostInfo,
     PostInfoText,
-    Bold
+    Bold,
+    UserImage
 } from './styles'
 
-export default function CommunityTextPost({data}) {
+import { didataBucket } from '../../../data/config.json'
+
+
+
+export default function CommunityTextPost({ data, userData }) {
     return (
         <Container>
             <FlexView>
-                <FakeUserImage/>
+                <UserImage source={{ uri: didataBucket + userData.imageURL}}/>
                 <View>
-                    <Name style={{marginLeft: 5}}>Gabriel Lara</Name>
-                    <Username style={{marginLeft: 5}}>@gabriel.lara</Username>
+                    <Name style={{marginLeft: 5}}>{userData.name}</Name>
+                    <Username style={{marginLeft: 5}}>@{userData.username}</Username>
                 </View>
             </FlexView>
             <Text style={{paddingBottom: 10, paddingHorizontal: 10}}>

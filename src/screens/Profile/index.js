@@ -33,8 +33,8 @@ import   SelectedOptions from '../../components/profile/SelectedOptions'
 
 const Profile = ({ navigation }) => {
 
-  const { name, imageURL, username, bio, _id } = useSelector(state => state.auth.profile)
-
+  const userData = useSelector(state => state.auth.profile)
+  const { name, imageURL, username, bio, _id } = userData
 
 
     return(
@@ -92,7 +92,7 @@ const Profile = ({ navigation }) => {
             <StatsText>{bio}</StatsText>
             
           </Content>
-          <SelectedOptions userId={_id} publications myProfile />
+          <SelectedOptions userData={userData} userId={_id} publications myProfile />
         </ScrollView>
       </Container>
     )

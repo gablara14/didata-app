@@ -17,19 +17,23 @@ import {
     PostInfo,
     PostInfoText,
     Bold,
-    PostImage
+    PostImage,
+    UserImage
 } from './styles'
 
 
-const CommunityPost = ({ data }) => {
+const CommunityPost = ({ data, userData }) => {
+
+   if (!userData) return <Text/>
+
     return (
         <Container>
 
             <FlexView>
-                <FakeUserImage/>
+                <UserImage source={{ uri: didataBucket + userData.imageURL}}/>
                 <View>
-                    <Name style={{marginLeft: 5}}>Gabriel Lara</Name>
-                    <Username style={{marginLeft: 5}}>@gabriel.lara</Username>
+                    <Name style={{marginLeft: 5}}>{userData.name}</Name>
+                    <Username style={{marginLeft: 5}}>@{userData.username}</Username>
                 </View>
 
             </FlexView>
@@ -46,9 +50,9 @@ const CommunityPost = ({ data }) => {
                     </IconContainer>
 
                     <PostInfo>
-                        <PostInfoText><Bold>20</Bold> curtidas</PostInfoText>
+                        <PostInfoText><Bold>0</Bold> curtidas</PostInfoText>
                         <Entypo name="dot-single" size={24} color="black" />
-                        <PostInfoText><Bold>14</Bold> comentários</PostInfoText>
+                        <PostInfoText><Bold>0</Bold> comentários</PostInfoText>
                     </PostInfo>
 
 

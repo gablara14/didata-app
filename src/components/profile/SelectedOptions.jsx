@@ -37,6 +37,7 @@ import {CreateNewCommunity} from '../Buttons'
               </Options>
               
               <Publications
+                userData={this.props.userData}
                 userId={this.props.userId}
               />
             </>

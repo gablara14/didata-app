@@ -156,7 +156,7 @@ class CreateCommunityScreen extends Component {
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
             aspect: [4,3],
-            quality: 1,
+            quality: 0.5,
             base64: true
         })
         if (!result.cancelled) {

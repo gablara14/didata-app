@@ -28,11 +28,24 @@ class ConfirmText extends Component {
 
 
     renderItems(){
-        return this.props.communities.map(com => {
-            return(
-                <Picker.Item key={com._id} label={com.name} value={com._id} />
-            )
+        if (!this.props.communities) return
+        let communityLength = 0
+        this.props.communities.forEach(com => {
+            if (com.userId === this.props.profile._id){
+                return communityLength++
+            }
+            return
         })
+        if (communityLength !== 0){
+            return this.props.communities.map(com => {
+                if (com.userId !== this.props.profile._id) return
+                
+                return(
+                    <Picker.Item key={com._id} label={com.name} value={com._id} />
+                )
+            })
+        }
+        return  <Picker.Item  label={"Você não possui nenhuma comunidade"} value="0" />
     }
 
     handleSubmit = async () => {
@@ -40,16 +53,18 @@ class ConfirmText extends Component {
 
         if (this.props.type !== 'image'){
             await this.props.createPublication({
+                
                 type: this.props.type,
-                userId: this.props.profile._id,
+                userId: this.props.profile,
                 communityId: this.state.itemValue,
                 body: this.state.text
             })
         } else {
             const arrayBuffer = Base64Binary.decode(this.props.imageURL)
             await this.props.createImagePublication({
+                
                 type: this.props.type,
-                userId: this.props.profile._id,
+                userId: this.props.profile,
                 communityId: this.state.itemValue,
                 file: arrayBuffer,
                 body: this.state.text

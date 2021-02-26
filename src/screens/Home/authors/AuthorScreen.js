@@ -37,6 +37,7 @@ const AuthorScreen = ({ navigation }) => {
     const imageURL = navigation.getParam('imageURL')
     const bio  = navigation.getParam('bio')
     const username  = navigation.getParam('username')
+    const userData= {id,name,imageURL, bio, username}
 
 
   
@@ -91,7 +92,7 @@ const AuthorScreen = ({ navigation }) => {
           </Content>
 
           
-           <SelectedOptions userId={id} publications={true} />
+           <SelectedOptions userData={userData} userId={id} publications={true} />
           
 
 

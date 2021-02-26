@@ -5,6 +5,8 @@ function countReducer(state = null, action){
     switch (action.type) {
         case 'COUNT_USER_CONTENTS':
             return action.payload || 0
+        case 'SIGN_OUT':
+            return null
         default:
             return state
     }
@@ -14,6 +16,7 @@ function themeReducer(state = true, action){
     switch (action.type) {
         case 'CHANGE_THEME':
             return action.payload || false
+
         default:
             return state
     }
@@ -27,6 +30,8 @@ function followingCommunityListReducer(state = {}, action){
             return _.omit(state, action.payload.communityId)
         case 'FETCH_FOLLOWING':
             return { ...state,  ..._.mapKeys(action.payload, 'communityId')  }
+        case 'SIGN_OUT':
+            return null 
         default:
             return state
     }
@@ -49,6 +54,7 @@ function profileReducer(state = null, action){
     switch (action.type){
         // case 'FETCH_PROFILE':
         //     return action.payload || false
+
         default:
             return state
     }
@@ -91,6 +97,8 @@ function publicationsReducer(state = {}, action){
             return { ...state,  [action.payload.id]: action.payload}
         case 'FETCH_PUBLICATIONS':
             return { ...state,  ..._.mapKeys(action.payload, '_id') }
+        case 'SIGN_OUT':
+            return null 
         default:
             return state
     }
@@ -101,6 +109,8 @@ function usersReducer(state = {}, action){
     switch (action.type){
         case 'FETCH_USERS':
             return { ...state, ..._.mapKeys(action.payload, '_id')  }
+        case 'SIGN_OUT':
+            return null 
         default:
             return state
     }

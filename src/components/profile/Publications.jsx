@@ -72,11 +72,14 @@ componentDidMount(){
           data={_.reverse(this.props.publications)}
           keyExtractor={data => data._id}
           renderItem={({ item }) => {
-              if (item.type === 'image') return < CommunityImagePost data={item} />
-              if (item.userId === this.props.userId){
-                return <CommunityTextPost data={item}/>
+              if (item.userId !== this.props.userId){
+                return <View style={{width: 10, height: 0.1}} ></View>
               }
-              return 
+
+
+              if (item.type === 'image') return < CommunityImagePost userData={this.props.userData} data={item} />
+              return <CommunityTextPost userData={this.props.userData} data={item}/>
+
               
           }}
         />
