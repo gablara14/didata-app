@@ -1,52 +1,23 @@
 import React, { Component } from 'react'
-import { Text, SafeAreaView, View, ActivityIndicator  } from 'react-native'
-import styled from 'styled-components/native'
+import { Text, SafeAreaView, View, ActivityIndicator, TextInput, ScrollView  } from 'react-native'
+
+import {
+    Container,
+    CommunitySelector,
+    TextContainer,
+    CommunityImage
+} from './styles'
+
 import { ConfirmCreateNewCommunity } from '../../../components/Buttons'
 import {Picker} from '@react-native-picker/picker';
 
 import { connect } from 'react-redux'
 import * as actions from '../../../actions'
-
-const Container = styled.View`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px 15px
-`
-
-const CommunitySelector = styled.View`
-    border: 0.5px solid rgba(0,0,0,0.3);
-    border-radius: 4px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 55px;
-    width: 100%;
-    padding: 5px
-`
-
-const TextContainer = styled.View`
-    height: 500px;
-    border: 0.5px solid rgba(0,0,0,0.3);
-    border-radius: 4px;
-    width: 100%;
-    margin-top: 15px;
-    padding: 5px
-`
-
-const CommunityImage =  styled.Image`
-    width: 42px;
-    height: 42px;
-    border-radius: 4px;
-    margin-left: 5px;
-    margin-right: 5px
-`
-
-
+import Base64Binary from 'base64-arraybuffer'
 
 class ConfirmText extends Component {
 
-    state = { itemValue: this.props.communities[0]._id || '' , itemIndex: '', loading: false, loadingButton: false}
+    state = { text: this.props.text, itemValue: this.props.communities[0]._id || '' , itemIndex: '', loading: false, loadingButton: false}
 
     async componentDidMount(){
         this.setState({ loading: true })
@@ -64,11 +35,36 @@ class ConfirmText extends Component {
         })
     }
 
+    handleSubmit = async () => {
+        this.setState({ loadingButton: true })
+
+        if (this.props.type !== 'image'){
+            await this.props.createPublication({
+                type: this.props.type,
+                userId: this.props.profile._id,
+                communityId: this.state.itemValue,
+                body: this.state.text
+            })
+        } else {
+            const arrayBuffer = Base64Binary.decode(this.props.imageURL)
+            await this.props.createImagePublication({
+                type: this.props.type,
+                userId: this.props.profile._id,
+                communityId: this.state.itemValue,
+                file: arrayBuffer,
+                body: this.state.text
+            })
+        }
+            
+        this.setState({ loadingButton: false })
+    }
+
 
     render() {
         if (!this.props.communities){ return ''}
         return (
             <SafeAreaView>
+                <ScrollView>
                 <Container>
 
                     {/* <CommunitySelector>
@@ -87,24 +83,24 @@ class ConfirmText extends Component {
                         </Picker>
 
                     <TextContainer>
-                        <Text>
-                            {this.props.text}
-                        </Text>
+
+                        <TextInput
+                            
+                            multiline={true}
+                            numberOfLines={50}
+                            onChangeText={e => this.setState({text:e})}
+                            value={this.state.text}
+                        />
                     </TextContainer>
+                    
 
                     { this.state.loadingButton
                         ? <ConfirmCreateNewCommunity loading onSubmit={() => console.log('') }/>
-                        :  <ConfirmCreateNewCommunity onSubmit={() =>{
-                            this.setState({ loadingButton: true })
-                            this.props.createPublication({
-                                type: 'text',
-                                userId: this.props.profile._id,
-                                communityId: this.state.itemValue,
-                                body: this.props.text
-                            }).then(() => this.setState({ loadingButton: false }))}}/>
+                        :  <ConfirmCreateNewCommunity onSubmit={this.handleSubmit}/>
                     }
 
                 </Container>
+                </ScrollView>
             </SafeAreaView>
         )
     }

@@ -32,7 +32,7 @@ export default function CreatePublication() {
                 <ContentTypeButton onPress={() => navigate('TextPost')}>
                     <Entypo name="text" size={24} color="black" />
                 </ContentTypeButton>
-                <ContentTypeButton>
+                <ContentTypeButton onPress={() => navigate('ImagePost')}>
                     <Entypo name="image" size={24} color="black" />
                 </ContentTypeButton>
             </FlexView>

@@ -102,6 +102,12 @@ export const ImageFakeContainer = styled.View`
     background-color: #C4C4C4
 `
 
+export const ImageContainer = styled.Image`
+    width: 100%;
+    height: 350px
+`
+
+
 export const Input = styled.TextInput`
     font-size: 16px;
     padding: 5px;

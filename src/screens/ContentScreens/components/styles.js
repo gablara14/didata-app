@@ -7,12 +7,28 @@ width: ${windowWidth};
 height: ${windowWidth};
 background-color:  #C4C4C4
 `
+
+
+export const PostImage = styled.Image`
+width: ${windowWidth};
+height: ${windowWidth};
+`
+
+
+
+
+
 export const FakeUserImage = styled.View`
 width: 45px;
 height: 45px;
 background-color: #C4C4C4;
 border-radius: 50px
 `
+
+
+
+
+
 export const FlexView = styled.View`
 display: flex;
 flex-direction: row;

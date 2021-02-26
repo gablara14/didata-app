@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, Image, ActivityIndicator, FlatList } from 'react-native'
 import styled from 'styled-components/native';
-import { thriverBucket, communitiesData } from '../../../data/config.json'
+import { thriverBucket, communitiesData, didataBucket } from '../../../data/config.json'
 import { navigate } from '../../../navigationRef'
 import { connect } from 'react-redux'
 import * as actions from '../../../actions'
@@ -55,7 +55,7 @@ class Communities extends Component {
                                 onPress={() => navigate('Community',{ id: item._id, name, imageURL, description,
                                 categories, members})}
                             >
-                                <Image source={{uri: item.imageURL  }} style={{backgroundColor:"#C4C4C4", height: 75, width: 75, borderRadius: 4}} />
+                                <Image source={{uri: didataBucket + item.imageURL  }} style={{backgroundColor:"#C4C4C4", height: 75, width: 75, borderRadius: 4}} />
                                 <View style={{marginLeft: 15}}>
                                     <Text  style={{ fontSize: 16,  marginBottom: 5}}>
                                         {item.name}

@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import { View, TextInput, Text, SafeAreaView } from 'react-native'
 import styled from 'styled-components/native'
 import { navigate } from '../../navigationRef'
+import { TextArea } from './styles'
 
-const TextArea = styled.TextInput`
-    padding: 10px;
-    font-size: 18px;
-`
+
 
 const PROVISORY_CONTINUE_BUTTON = styled.TouchableOpacity`
     padding: 10px;

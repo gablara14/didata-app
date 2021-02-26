@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native'
 import styled from 'styled-components/native'
-import { thriverBucket } from '../../data/config.json'
+import { didataBucket } from '../../data/config.json'
 import { SelectedCommunityOptions } from '../../components/profile/SelectedOptions'
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
@@ -131,7 +131,7 @@ class CommunityScreen extends Component {
         return (
             <View style={{ backgroundColor: 'white', height: '100%', width: '100%'}}>
                 <ScrollView>
-                    <BackgroundImage source={{ uri: thriverBucket + imageURL }} />
+                    <BackgroundImage source={{ uri: didataBucket + imageURL }} />
                     <DarkLayer />
                     <MainContainer>
                         <View>

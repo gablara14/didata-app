@@ -4,6 +4,15 @@ export const Container = styled.View`
   flex: 1;
 `;
 
+export const TextArea = styled.TextInput`
+    padding: 10px;
+    font-size: 18px;
+`
+
+export const ImageSelectButton = styled.TouchableOpacity`
+padding: 10px;
+`
+
 export const Header = styled.View`
   margin-top: 10px;
   flex-direction: row;

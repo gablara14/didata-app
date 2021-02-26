@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, ScrollView, StyleSheet, FlatList, Switch, ActivityIndicator } from 'react-native'
+import { Text, View, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, FlatList, Switch, ActivityIndicator } from 'react-native'
 import styled from 'styled-components/native'
-import { ImageFakeContainer, Input, FormContainer, FormTitle,  Label  } from './styles'
-import { ConfirmCreateNewCommunity } from '../../components/Buttons'
+import { ImageFakeContainer, ImageContainer, Input, FormContainer, FormTitle,  Label  } from './styles'
+// import { ConfirmCreateNewCommunity } from '../../components/Buttons'
 import Tags from '../../components/input-types/Tags'
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
 import { NavigationEvents } from 'react-navigation'
-import { Ionicons, FontAwesome5  } from '@expo/vector-icons';
+import { Ionicons  } from '@expo/vector-icons';
 import { navigate } from '../../navigationRef'
+
+
+import * as ImagePicker from 'expo-image-picker';
+
+import { didataBucket } from '../../data/config.json'
+import Base64Binary from 'base64-arraybuffer'
+
 
 const FIRSTDATA = [
     {id: '1', name:'business'},
@@ -77,26 +84,34 @@ class CreateCommunityScreen extends Component {
         closedComunnity: false,
         anyoneCanPost: false,
         hiddenCommunity: false,
-        imageURL: 'https://s2.glbimg.com/AN4Gw4fFNwjVdzG_oRCYN_-cvXI=/512x320/smart/e.glbimg.com/og/ed/f/original/2020/11/30/baby-yoda.jpg',
+        TESTIMAGEURL: 'https://s2.glbimg.com/AN4Gw4fFNwjVdzG_oRCYN_-cvXI=/512x320/smart/e.glbimg.com/og/ed/f/original/2020/11/30/baby-yoda.jpg',
+        imageURL: null
+
     }
 
 
-    onSubmit = () => {
-
+    onSubmit = async () => {
         this.setState({ loader: true })
-        this.props.createCommunity({
+
+        
+        const arrayBuffer = Base64Binary.decode(this.state.imageURL)
+
+
+        await this.props.createCommunity({
             name: this.state.name,
             description: this.state.description,
-            imageURL: this.state.imageURL,
+            file: arrayBuffer,
             categories: this.props.tagList,
             userId: this.props.profile._id,
             closedCommunity: this.state.closedComunnity,
             anyoneCanPost: this.state.anyoneCanPost,
             hiddenCommunity: this.state.hiddenCommunity
-        }).then(() => {
-            this.setState({ loader: false})
-            navigate('Profile')
-        } )
+        })
+
+        this.setState({ loader: false})
+        navigate('Profile')
+
+    
     }
 
 
@@ -136,6 +151,20 @@ class CreateCommunityScreen extends Component {
         )
     }
 
+    handleChoosePhoto = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4,3],
+            quality: 1,
+            base64: true
+        })
+        if (!result.cancelled) {
+            //const arrayBuffer = Base64Binary.decode(result.base64)
+            this.setState({ imageURL: result.base64})
+        }
+    }
+    
 
     render(){
            return(
@@ -143,7 +172,15 @@ class CreateCommunityScreen extends Component {
                 <NavigationEvents onWillBlur={() => this.props.clearTags()} />
 
                 <ScrollView>
-                    <ImageFakeContainer />
+                    <TouchableOpacity  onPress={this.handleChoosePhoto}>
+                        {
+                            this.state.imageURL
+                            ?  <ImageContainer source={{ uri: `data:image/jpeg;base64,${this.state.imageURL}` }} />
+                            : <ImageContainer source={{ uri: didataBucket + 'BABYYODA.jpg' }} />
+                        }
+                    </TouchableOpacity>
+
+                    
                     <FormContainer>
                         <FormTitle>Community Info</FormTitle>
                         {this.renderInput('Name of Community', this.state.name, (e) =>this.setState({name: e}))}

@@ -69,7 +69,8 @@ class EditProfileScreen extends Component {
         usernameValue:  this.props.profile.username,
         bioValue: this.props.profile.bio,
         loader: false,
-        image: null
+        image: null,
+        imageLoader: false
     }
 
 
@@ -100,7 +101,10 @@ class EditProfileScreen extends Component {
             
             const URI = 'data:image/jpeg;base64,' + result.base64
             const arrayBuffer = Base64Binary.decode(result.base64)
-            this.props.updateImage(this.props.profile._id, arrayBuffer)
+            this.setState({ imageLoader: true})
+            this.props.updateImage(this.props.profile._id, arrayBuffer).then(() => {
+                this.setState({ imageLoader: false})
+            })
         }
     }
     
@@ -123,25 +127,25 @@ class EditProfileScreen extends Component {
             <Container style={{alignItems: 'center'}}>
                 <View style={{ padding: 40, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                     <TouchableOpacity onPress={this.handleChoosePhoto}>
-                        <FakeImage source={{ uri: didataBucket + imageURL }} />
+                        {
+                            this.state.imageLoader
+                            ? <ActivityIndicator size="small" color="black"/>
+                            : <FakeImage source={{ uri: didataBucket + imageURL }} />
+                        }
                     </TouchableOpacity>
                    
                     <View style={{ paddingVertical: 15, alignItems: 'center' }}>
                         <Name>{name}</Name>
                         <Username>@{username}</Username>
                     </View>
-
                 </View>
                 
-
                 <View style={{width: '90%'}}>
                     {this.renderInput('Name', this.state.nameValue,  (e) => this.setState({ nameValue: e }) )}
                     {this.renderInput('Username', this.state.usernameValue, (e) => this.setState({ usernameValue: e }) )}
                     {this.renderInput('Bio', this.state.bioValue, (e) => this.setState({ bioValue: e }) )}
                 </View>
 
-
-                
                 <CreateButton onPress={this.onSubmit}>
                     {
                         this.state.loader
@@ -149,8 +153,6 @@ class EditProfileScreen extends Component {
                         : <ButtonText>Save!</ButtonText>
                     }
                 </CreateButton> 
-
-
             </Container>
         )
     }

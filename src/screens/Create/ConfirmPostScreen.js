@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
-import ConfirmImage from './components/ConfirmImage'
+
 import ConfirmText from './components/ConfirmText'
 
 export default class ConfirmPostScreen extends Component {
@@ -8,8 +8,9 @@ export default class ConfirmPostScreen extends Component {
         const type = this.props.navigation.getParam('type')
         const text = this.props.navigation.getParam('text')
         if(type === 'image'){
-            return <ConfirmImage />
+            const imageURL = this.props.navigation.getParam('imageURL')
+            return <ConfirmText text={text} type={type} imageURL={imageURL} />
         }
-        return <ConfirmText text={text} />
+        return <ConfirmText text={text} type={type}/>
     }
 }

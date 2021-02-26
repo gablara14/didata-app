@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, Dimensions } from 'react-native'
-
+import { didataBucket } from '../../../data/config.json'
 
 import { MaterialIcons, FontAwesome5, Fontisto, Entypo } from '@expo/vector-icons';
 import {
@@ -16,11 +16,12 @@ import {
     IconAndInfo,
     PostInfo,
     PostInfoText,
-    Bold
+    Bold,
+    PostImage
 } from './styles'
 
 
-const CommunityPost = () => {
+const CommunityPost = ({ data }) => {
     return (
         <Container>
 
@@ -32,12 +33,12 @@ const CommunityPost = () => {
                 </View>
 
             </FlexView>
-            <Text style={{paddingBottom: 10, paddingHorizontal: 10}}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio cupiditate quos quaerat earum commodi architecto iste mollitia nisi, qui eveniet impedit facere animi, explicabo quidem eligendi quo enim, magni tempore.</Text>
+            <Text style={{paddingBottom: 10, paddingHorizontal: 10}}>{data.body}</Text>
             
 
 
             <View>
-                <FakeImage />
+                <PostImage source={{ uri: didataBucket + data.imageURL}} />
                 <IconAndInfo style={{ padding: 10}}>
                     <IconContainer >
                         <MaterialIcons name="favorite-outline" size={26} color="rgba(0,0,0,0.5)" />
