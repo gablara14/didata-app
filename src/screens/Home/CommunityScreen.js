@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator  } from 'react-native'
 import styled from 'styled-components/native'
 import { didataBucket } from '../../data/config.json'
-import { SelectedCommunityOptions } from '../../components/profile/SelectedOptions'
+import SelectedCommunityOptions from '../../components/profile/SelectedCommunityOptions'
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
 

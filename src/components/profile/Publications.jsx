@@ -49,35 +49,15 @@ componentDidMount(){
         }
         return (
         <View>
-        {/* <FlexView>
-          
-          <TouchableOpacity onPress={() => navigate('CommunityPosts')}  style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
-          
-         
-          <View style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
-          <View style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
-        </FlexView>
-        <FlexView>
-          <View style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
-          <View style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
-          <View style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
-        </FlexView>
-        <FlexView>
-          <View style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
-          <View style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
-          <View style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
-        </FlexView> */}
-        <View style={{alignItems: 'center', justifyContent: 'center', padding: 20, borderBottomColor: 'rgba(0,0,0,0.3)', borderBottomWidth: 0.5}}>
-          <Text style={{ fontSize: 16, fontWeight: 'bold'}}>{publications} PUBLICATIONS</Text>
-        </View>
+          <View style={{alignItems: 'center', justifyContent: 'center', padding: 20, borderBottomColor: 'rgba(0,0,0,0.3)', borderBottomWidth: 0.5}}>
+            <Text style={{ fontSize: 16, fontWeight: 'bold'}}>{publications} PUBLICATIONS</Text>
+          </View>
         <View>
           {
             this.props.userId === this.props.profile._id 
             ? <CreatePublication />
             : <View />
           }
-          
-
         <FlatList
           data={_.reverse(this.props.publications)}
           keyExtractor={data => data._id}
@@ -86,36 +66,11 @@ componentDidMount(){
                 return <View style={{width: 10, height: 0.1}} ></View>
               }
 
-
               if (item.type === 'image') return < CommunityImagePost userData={this.props.userData} data={item} />
               return <CommunityTextPost userData={this.props.userData} data={item}/>
 
-              
           }}
         />
-
-
-
-{/* 
-          <CommunityTextPost />
-          < CommunityImagePost />
-          < CommunityImagePost />
-          < CommunityImagePost />
-          < CommunityImagePost />
-          < CommunityImagePost /> */}
-{/* 
-          <FlatList
-            data={}
-            keyExtractor={data => data.id}
-            renderItem={({ item }) => {
-              if (item.type === 'image'){
-                return  < CommunityPost />
-              } else {
-                return // TextPost
-              }
-            }}
-          /> */}
-
         </View>
       </View>      
     )

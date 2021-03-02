@@ -20,10 +20,9 @@ export default class CommentScreen extends Component {
                         <Name style={{marginLeft: 5}}>{name}</Name>
                         <Username style={{marginLeft: 5}}>@{username}</Username>
                     </View>
-                    
-                   
                 </FlexView>
                 <Text style={{paddingBottom: 10, paddingHorizontal: 10}}>{body}</Text>
+                
             </SafeAreaView>
         )
     }

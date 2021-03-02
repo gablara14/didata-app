@@ -39,9 +39,12 @@ export const createImagePublication = (data) => async dispatch => {
 
 
 
-
-
 export const fetchPublicationsByUserId = (id) => async dispatch => {
     const res = await axiosApi.get(`/users/${id}/publications`)
+    dispatch({ type: 'FETCH_PUBLICATIONS', payload: res.data })
+}
+
+export const fetchPublicationsByCommunityId = (id) => async dispatch => {
+    const res = await axiosApi.get(`/communities/${id}/publications`)
     dispatch({ type: 'FETCH_PUBLICATIONS', payload: res.data })
 }

@@ -68,7 +68,7 @@ const AuthorScreen = ({ navigation }) => {
             <Stats>
               <StatsColumn>
                 <StatsNumber>{ Math.floor(Math.random() * 1000) }</StatsNumber>
-                <StatsText>Following</StatsText>
+                <StatsText>Publications</StatsText>
               </StatsColumn>
               <Separator>|</Separator>
               <StatsColumn>
