@@ -7,7 +7,7 @@ import * as actions from '../../actions'
 import NewReleases from './components/NewReleases'
 
 import Spacer from '../../components/Spacer'
-
+import _ from 'lodash'
 import { TrendingAuthors, HottestCommunities } from '../../components/Carousel.jsx'
 
 import { FontAwesome } from '@expo/vector-icons';
@@ -47,7 +47,7 @@ class Home extends Component {
                             </FlexView>
                             <View>
                                 {/* <Hottest data={DATA} /> */}
-                                <HottestCommunities data={this.props.communities} />
+                                <HottestCommunities data={_.reverse(this.props.communities)} />
                             </View>
                         </Spacer>
 

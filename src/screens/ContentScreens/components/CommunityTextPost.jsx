@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 import convertDateToText from '../../../utils/convertDateToText'
 import { MaterialIcons, FontAwesome5, Fontisto, Entypo } from '@expo/vector-icons';
@@ -21,7 +21,7 @@ import {
 } from './styles'
 
 import { didataBucket } from '../../../data/config.json'
-
+import { navigate } from '../../../navigationRef'
 
 
 export default function CommunityTextPost({ data, userData }) {
@@ -40,13 +40,17 @@ export default function CommunityTextPost({ data, userData }) {
             <IconAndInfo style={{ padding: 10}}>
                     <IconContainer >
                         <MaterialIcons name="favorite-outline" size={26} color="rgba(0,0,0,0.5)" />
-                        <FontAwesome5 style={{marginLeft: 15}} name="comment" size={24} color="rgba(0,0,0,0.5)" />
+                        <TouchableOpacity onPress={() => navigate('Comment', {userData, data})}>
+                            <FontAwesome5 style={{marginLeft: 15}} name="comment" size={24} color="rgba(0,0,0,0.5)" />
+                        </TouchableOpacity>
                     </IconContainer>
 
                     <PostInfo>
                         <PostInfoText><Bold>0</Bold> curtidas</PostInfoText>
                         <Entypo name="dot-single" size={24} color="black" />
-                        <PostInfoText><Bold>0</Bold> comentários</PostInfoText>
+                        <TouchableOpacity onPress={() => navigate('Comment', {userData, data})}>
+                            <PostInfoText><Bold>0</Bold> comentários</PostInfoText>
+                        </TouchableOpacity>
                     </PostInfo>
 
 

@@ -7,6 +7,7 @@ import CommunityTextPost from '../../screens/ContentScreens/components/Community
 import CreatePublication from './CreatePublication'
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
+import EmptyList from '../EmptyList'
 import _ from 'lodash'
 
 export const FlexView = styled.View`
@@ -35,7 +36,16 @@ componentDidMount(){
           return <ActivityIndicator style={{marginTop: 20}} size="large" color="black"/> 
         }
         if (!this.props.publications.length){
-          return <View />
+          return <EmptyList text="The user does not has any publication" />
+        }
+        let publications = 0
+        this.props.publications.forEach(el => {
+          if (el.userId === this.props.userId){
+            publications++
+          }
+        })
+        if (publications === 0){
+          return <EmptyList text="The user does not has any publication" />
         }
         return (
         <View>
@@ -58,7 +68,7 @@ componentDidMount(){
           <View style={{ backgroundColor: '#ff9', width: '33%', height: 125, borderStyle: 'solid', borderColor: 'white', borderWidth: 1}} />
         </FlexView> */}
         <View style={{alignItems: 'center', justifyContent: 'center', padding: 20, borderBottomColor: 'rgba(0,0,0,0.3)', borderBottomWidth: 0.5}}>
-          <Text style={{ fontSize: 16, fontWeight: 'bold'}}>63 PUBLICATIONS</Text>
+          <Text style={{ fontSize: 16, fontWeight: 'bold'}}>{publications} PUBLICATIONS</Text>
         </View>
         <View>
           {

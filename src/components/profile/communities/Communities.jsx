@@ -36,6 +36,15 @@ class Communities extends Component {
         else if (!this.props.communities.length){
             return <EmptyCommunityList/>
         }
+        let result = false
+        this.props.communities.forEach(el => {
+          if (el.userId === this.props.userId){
+            result = true
+          }
+        })
+        if (!result){
+            return <EmptyCommunityList/>
+          }
 
         return (
         <>        

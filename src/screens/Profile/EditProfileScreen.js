@@ -81,7 +81,10 @@ class EditProfileScreen extends Component {
             name: this.state.nameValue ,
             username: this.state.usernameValue,
             bio: this.state.bioValue
-        }).then(() => this.setState({ loader: false }))
+        }).then(() => {
+            this.setState({ loader: false })
+            this.props.navigation.navigate('Profile')
+        } )
     }
 
     handleChoosePhoto = async () => {

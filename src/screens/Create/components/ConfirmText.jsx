@@ -14,6 +14,7 @@ import {Picker} from '@react-native-picker/picker';
 import { connect } from 'react-redux'
 import * as actions from '../../../actions'
 import Base64Binary from 'base64-arraybuffer'
+import {navigate} from '../../../navigationRef'
 
 class ConfirmText extends Component {
 
@@ -72,6 +73,7 @@ class ConfirmText extends Component {
         }
             
         this.setState({ loadingButton: false })
+        navigate('Profile')
     }
 
 
