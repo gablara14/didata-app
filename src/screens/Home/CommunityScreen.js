@@ -156,7 +156,7 @@ class CommunityScreen extends Component {
                         </View>
 
                     </MainContainer>
-                    <SelectedCommunityOptions about />
+                    <SelectedCommunityOptions communityId={id} about />
                 </ScrollView>
             </View>
         )

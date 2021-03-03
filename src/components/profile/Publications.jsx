@@ -25,7 +25,7 @@ class Publications extends Component {
 componentDidMount(){
     this.props.fetchPublicationsByUserId(this.props.userId).then(() => {
         this.setState({ loading: false })
-        console.log(this.props.publications)
+        
     })
 }
 
@@ -35,16 +35,13 @@ componentDidMount(){
         if (this.state.loading){
           return <ActivityIndicator style={{marginTop: 20}} size="large" color="black"/> 
         }
-        if (!this.props.publications.length){
-          return <EmptyList text="The user does not has any publication" />
-        }
         let publications = 0
         this.props.publications.forEach(el => {
           if (el.userId === this.props.userId){
             publications++
           }
         })
-        if (publications === 0){
+        if (publications === 0 || !this.props.publications.length){
           return <EmptyList text="The user does not has any publication" />
         }
         return (
