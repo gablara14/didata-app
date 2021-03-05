@@ -27,6 +27,7 @@ class SignInScreen extends Component {
                <FormView>
                     <LabelText>Your email</LabelText>
                     <TextInput
+                        placeholder="Enter your email"
                         value={this.state.email} 
                         onChangeText={e => this.setState({ email: e })} 
                         autoCapitalize="none"
@@ -37,6 +38,7 @@ class SignInScreen extends Component {
                 <FormView>
                     <LabelText>Your Password</LabelText>
                     <TextInput
+                         placeholder="Enter your password"
                         secureTextEntry
                         value={this.state.password} 
                         onChangeText={e => this.setState({ password: e })} 

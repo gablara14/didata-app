@@ -66,6 +66,8 @@ function authReducer(state =  { token: null, errorMessage: '' }, action){
     switch (action.type){
         case 'ADD_ERROR':
             return {...state, errorMessage: action.payload }
+        case 'VALIDATE_DUPLICATE':
+            return {...state, validateMessage:action.payload}
         case 'SIGN_IN':
             return { errorMessage: '', token: action.payload }
         case 'FETCH_PROFILE':

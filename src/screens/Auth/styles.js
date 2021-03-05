@@ -39,7 +39,7 @@ export const TextInput = styled.TextInput`
     border: 0.5px solid rgba(0,0,0,0.3);
     height: 42px;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 5px
 `
 

@@ -27,6 +27,7 @@ class SignUpScreen extends Component {
                 <FormView>
                     <LabelText>Your name</LabelText>
                     <TextInput
+                     placeholder="Enter your name"
                         value={this.state.name} 
                         onChangeText={e => this.setState({ name: e })} 
                         autoCorrect={false}
@@ -36,6 +37,7 @@ class SignUpScreen extends Component {
                 <FormView>
                     <LabelText>Your Username</LabelText>
                     <TextInput
+                     placeholder="Enter your username"
                         value={this.state.username} 
                         onChangeText={e => this.setState({ username: e })} 
                         autoCapitalize="none"
@@ -46,6 +48,7 @@ class SignUpScreen extends Component {
                <FormView>
                     <LabelText>Your email</LabelText>
                     <TextInput
+                        placeholder="Enter your email"
                         value={this.state.email} 
                         onChangeText={e => this.setState({ email: e })} 
                         autoCapitalize="none"
@@ -59,6 +62,7 @@ class SignUpScreen extends Component {
                     <LabelText>Your Password</LabelText>
                     <TextInput
                         secureTextEntry
+                        placeholder="Enter your password"
                         value={this.state.password} 
                         onChangeText={e => this.setState({ password: e })} 
                         autoCapitalize="none"
@@ -77,7 +81,7 @@ class SignUpScreen extends Component {
 
                 </ContinueButton>
                 <ErrorMessage
-                    message={this.props.errorMessage}
+                    message={this.props.auth.errorMessage}
                 />
             </SignContainer>
         )
@@ -86,7 +90,7 @@ class SignUpScreen extends Component {
 }
 function MapStateToProps(state){
     return{
-        errorMessage: state.auth.errorMessage
+        auth: state.auth
     }
 }
 export default connect(MapStateToProps, actions )(SignUpScreen)

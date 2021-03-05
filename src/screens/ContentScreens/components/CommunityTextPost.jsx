@@ -23,15 +23,19 @@ import {
 import { didataBucket } from '../../../data/config.json'
 import { navigate } from '../../../navigationRef'
 
+export default function CommunityTextPost({ data, userData, onSubmit }) {
 
-export default function CommunityTextPost({ data, userData }) {
+  
+
+
+
     return (
         <Container>
             <FlexView>
                 <UserImage source={{ uri: didataBucket + userData.imageURL}}/>
                 <View>
                     <Name style={{marginLeft: 5}}>{userData.name}</Name>
-                    <Username style={{marginLeft: 5}}>@{userData.username}</Username>
+                    <Username style={{marginLeft: 5}}>@{userData.username} - {convertDateToText(data.createdAt)}</Username>
                 </View>
             </FlexView>
             <Text style={{paddingBottom: 10, paddingHorizontal: 10}}>
@@ -39,14 +43,19 @@ export default function CommunityTextPost({ data, userData }) {
             </Text>
             <IconAndInfo style={{ padding: 10}}>
                     <IconContainer >
-                        <MaterialIcons name="favorite-outline" size={26} color="rgba(0,0,0,0.5)" />
+                        <TouchableOpacity
+                            onPress={() => onSubmit(data._id)}
+                        >
+                            <MaterialIcons name="favorite-outline" size={26} color="rgba(0,0,0,0.5)" />
+                        </TouchableOpacity>
+
                         <TouchableOpacity onPress={() => navigate('Comment', {userData, data})}>
                             <FontAwesome5 style={{marginLeft: 15}} name="comment" size={24} color="rgba(0,0,0,0.5)" />
                         </TouchableOpacity>
                     </IconContainer>
 
                     <PostInfo>
-                        <PostInfoText><Bold>0</Bold> curtidas</PostInfoText>
+                        <PostInfoText><Bold>{data.likes}</Bold> curtidas</PostInfoText>
                         <Entypo name="dot-single" size={24} color="black" />
                         <TouchableOpacity onPress={() => navigate('Comment', {userData, data})}>
                             <PostInfoText><Bold>0</Bold> comentários</PostInfoText>

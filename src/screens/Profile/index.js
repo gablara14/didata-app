@@ -9,6 +9,7 @@ import {
     Entypo
   } from '@expo/vector-icons';
 
+
 import { didataBucket } from '../../data/config.json'
 
 import {

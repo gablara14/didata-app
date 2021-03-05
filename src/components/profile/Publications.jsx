@@ -29,6 +29,9 @@ componentDidMount(){
     })
 }
 
+handleInteraction = async (id) => {
+  await this.props.likePublication(id)
+}
 
 
   render(){
@@ -41,9 +44,6 @@ componentDidMount(){
             publications++
           }
         })
-        if (publications === 0 || !this.props.publications.length){
-          return <EmptyList text="The user does not has any publication" />
-        }
         return (
         <View>
           <View style={{alignItems: 'center', justifyContent: 'center', padding: 20, borderBottomColor: 'rgba(0,0,0,0.3)', borderBottomWidth: 0.5}}>
@@ -55,6 +55,11 @@ componentDidMount(){
             ? <CreatePublication />
             : <View />
           }
+          {
+            publications === 0 || !this.props.publications.length
+            ? <EmptyList text="The user does not has any publication" />
+            : <View />
+          }
         <FlatList
           data={_.reverse(this.props.publications)}
           keyExtractor={data => data._id}
@@ -63,8 +68,9 @@ componentDidMount(){
                 return <View style={{width: 10, height: 0.1}} ></View>
               }
 
-              if (item.type === 'image') return < CommunityImagePost userData={this.props.userData} data={item} />
-              return <CommunityTextPost userData={this.props.userData} data={item}/>
+              if (item.type === 'image') return < CommunityImagePost
+              userData={this.props.userData} data={item} onSubmit={this.handleInteraction}/>
+              return <CommunityTextPost userData={this.props.userData} data={item}  onSubmit={this.handleInteraction}/>
 
           }}
         />

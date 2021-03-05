@@ -54,8 +54,7 @@ class  SelectedCommunityOptions extends Component {
                 }
   
                 if (item.type === 'image') return < CommunityImagePost userData={FAKEUSERDATA} data={item} />
-                return <CommunityTextPost userData={this.props.userData} data={item}/>
-  
+                return <CommunityTextPost userData={FAKEUSERDATA} data={item}/>
             }} />
         )
     }

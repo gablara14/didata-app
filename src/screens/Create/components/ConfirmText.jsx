@@ -18,6 +18,8 @@ import {navigate} from '../../../navigationRef'
 
 class ConfirmText extends Component {
 
+   
+
     state = { text: this.props.text, itemValue: this.props.communities[0]._id || '' , itemIndex: '', loading: false, loadingButton: false}
 
     async componentDidMount(){
@@ -58,7 +60,8 @@ class ConfirmText extends Component {
                 type: this.props.type,
                 userId: this.props.profile,
                 communityId: this.state.itemValue,
-                body: this.state.text
+                body: this.state.text,
+                likes: 0
             })
         } else {
             const arrayBuffer = Base64Binary.decode(this.props.imageURL)
@@ -68,7 +71,8 @@ class ConfirmText extends Component {
                 userId: this.props.profile,
                 communityId: this.state.itemValue,
                 file: arrayBuffer,
-                body: this.state.text
+                body: this.state.text,
+                likes: 0
             })
         }
             

@@ -21,7 +21,7 @@ import {
     UserImage
 } from './styles'
 import { navigate } from '../../../navigationRef';
-
+import convertDateToText from '../../../utils/convertDateToText.js'
 
 const CommunityPost = ({ data, userData }) => {
 
@@ -34,7 +34,7 @@ const CommunityPost = ({ data, userData }) => {
                 <UserImage source={{ uri: didataBucket + userData.imageURL}}/>
                 <View>
                     <Name style={{marginLeft: 5}}>{userData.name}</Name>
-                    <Username style={{marginLeft: 5}}>@{userData.username}</Username>
+                    <Username style={{marginLeft: 5}}>@{userData.username} - {convertDateToText(data.createdAt)}</Username>
                 </View>
             </FlexView>
 
