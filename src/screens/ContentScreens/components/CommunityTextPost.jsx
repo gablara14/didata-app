@@ -44,7 +44,7 @@ export default function CommunityTextPost({ data, userData, onSubmit }) {
             <IconAndInfo style={{ padding: 10}}>
                     <IconContainer >
                         <TouchableOpacity
-                            onPress={() => onSubmit(data._id)}
+                            onPress={() => onSubmit(userData._id, data._id)}
                         >
                             <MaterialIcons name="favorite-outline" size={26} color="rgba(0,0,0,0.5)" />
                         </TouchableOpacity>

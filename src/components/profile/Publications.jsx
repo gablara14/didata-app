@@ -29,8 +29,12 @@ componentDidMount(){
     })
 }
 
-handleInteraction = async (id) => {
-  await this.props.likePublication(id)
+handleInteraction = async (userId, publicationId) => {
+  await this.props.likePublication({
+    userId,
+    publicationId
+  })
+  
 }
 
 
@@ -67,11 +71,11 @@ handleInteraction = async (id) => {
               if (item.userId !== this.props.userId){
                 return <View style={{width: 10, height: 0.1}} ></View>
               }
-
+              // interaction.includes(item)
+              // interaction.find(el => el.userId === item.userId)..... If true, LIKE == TRUE
               if (item.type === 'image') return < CommunityImagePost
               userData={this.props.userData} data={item} onSubmit={this.handleInteraction}/>
               return <CommunityTextPost userData={this.props.userData} data={item}  onSubmit={this.handleInteraction}/>
-
           }}
         />
         </View>

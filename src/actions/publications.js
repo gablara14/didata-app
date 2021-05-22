@@ -51,12 +51,14 @@ export const fetchPublicationsByCommunityId = (id) => async dispatch => {
 }
 
 
-export const likePublication = (id) => async dispatch => {
-    const res = await axiosApi.patch(`/publications/${id}/interactions`, {like: 1})
+export const likePublication = (data) => async dispatch => {
+    const {userId, publicationId} = data
+    const res = await axiosApi.post(`/publications/${publicationId}/interactions`,{userId})
     dispatch({ type: 'FETCH_PUBLICATION', payload: res.data })
 }
 
-export const dislikePublication = (id) => async dispatch => {
-    const res = await axiosApi.patch(`/publications/${id}/interactions`, {like: -1})
+export const dislikePublication = (data) => async dispatch => {
+    const {userId, publicationId} = data
+    const res = await axiosApi.delete(`/publications/${publicationId}/interactions`, {userId} )
     dispatch({ type: 'FETCH_PUBLICATION', payload: res.data })
 }
